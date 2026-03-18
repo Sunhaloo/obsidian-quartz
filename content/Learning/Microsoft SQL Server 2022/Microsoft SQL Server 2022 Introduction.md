@@ -38,14 +38,14 @@ status: Completed
 
 This is the actual "_server_" that will allow us to connect to **local** or **remote** servers.
 
-The download link is: https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+The download link is: <https://www.microsoft.com/en-us/sql-server/sql-server-downloads>
 
 ## SQL Server Management Studio Installation
 
 Think of this program like an editor and management for the "_server_".
 It's the place where the user will be able to; for example run commands and queries ( _and more_! ), which will be _re-directed_ to the SQL Server $\uparrow$
 
-Here is the download link for Management Studio: https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16
+Here is the download link for Management Studio: <https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16>
 
 > [!WARNING] Short Notice for my Linux Fans
 > The SQL Server is available on Linux that to only on Ubuntu
@@ -81,12 +81,12 @@ In this _server_, you will find that we have many **databases** and hence, the c
 
 graph TD
 
-	 A[Server] ---> B[Database 1]
-	 A[Server] ---> C[Database 2]
-	 A[Server] ---> D[Database 3]
-	 E[Client 1] ---> B[Database 1]
-	 F[Client 2] ---> B[Database 1]
-	 G[Client 3] ---> D[Database 3]
+  A[Server] ---> B[Database 1]
+  A[Server] ---> C[Database 2]
+  A[Server] ---> D[Database 3]
+  E[Client 1] ---> B[Database 1]
+  F[Client 2] ---> B[Database 1]
+  G[Client 3] ---> D[Database 3]
 
 ```
 
@@ -95,14 +95,14 @@ graph TD
 # Getting Started
 
 > [!WARNING]
-> As I said I am currently running Endeavour OS and as it is Arch based distribution... No, I can install it on Arch using the AUR / `yay` as you can see $\downarrow$:
+> As I said I am currently running Endeavour OS and as it is Arch based distribution... As you can see, I have the ability to install it from the AUR / `yay`:
 >
 > ```console
 > aur/go-sqlcmd 1.7.0-1 (+1 0.00)
 >    CLI for SQL Server and Azure SQL
 > ```
 >
-> But for simplicity sake and as I am do not want to brick my update and other shitty stuff happening to my system. I am going to simply use SQL Server 2022 and SQL Server Management Studio on Windows.
+> But for simplicity sake and as I do not want to _brick_ my Arch install and other shitty stuff happening to my system. I am simply going to use SQL Server 2022 and SQL Server Management Studio on Windows.
 >
 > > Also they are using Windows to show SQL Server in University. Sooooo...
 
@@ -148,7 +148,7 @@ Here is another image to show you what it looks like after **expanding** some _f
 
 > [!WARNING]
 > If you accidentally close the Object Explorer, no worries mate!
-> You can quickly bring it up by pressing the `<F8> ` key.
+> You can quickly bring it up by pressing the `<F8>` key.
 
 ## New Query
 
@@ -170,7 +170,7 @@ Your setup should now look something like this $\downarrow$:
 > [!NOTE]
 > When I did this on my laptop; the Object Explorer was on the side.
 > I don't know why here on my Desktop its not the case.
-> But then again you can open in up using the `<F8> ` key.
+> But then again you can open in up using the `<F8>` key.
 
 ## Disconnecting from Server
 
@@ -190,10 +190,10 @@ Hence we need to do some changes in SQL Management Studio so we can get the head
 >
 > ```console
 > |-- Tools
-> 	|-- Options
-> 		|-- Query Results
-> 			|-- SQL Server
-> 				|__ Result to Grid
+>  |-- Options
+>   |-- Query Results
+>    |-- SQL Server
+>     |__ Result to Grid
 > ```
 >
 > When you arrive at this screen you should configure it like so:
@@ -248,15 +248,15 @@ If you are like me and is extremely, stubborn and still want to use the `DROP` c
 > [!INFO]
 > Instead of me explaining you how do this... Simply click on the link below and read the **first** answer!
 >
-> > Link: https://stackoverflow.com/questions/64325788/cant-login-in-sql-server-management-studio
+> > Link: <https://stackoverflow.com/questions/64325788/cant-login-in-sql-server-management-studio>
 
 ---
 
 # Socials
 
-- **Instagram**: https://www.instagram.com/s.sunhaloo
-- **YouTube**: https://www.youtube.com/@s.sunhaloo
-- **GitHub**: https://www.github.com/Sunhaloo
+- **Instagram**: <https://www.instagram.com/s.sunhaloo>
+- **YouTube**: <https://www.youtube.com/@s.sunhaloo>
+- **GitHub**: <https://www.github.com/Sunhaloo>
 
 ---
 

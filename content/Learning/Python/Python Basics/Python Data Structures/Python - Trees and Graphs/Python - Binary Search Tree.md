@@ -33,7 +33,7 @@ status: Completed
 		- [[#Traverse Method]]
 	- [[#Miscellaneous Methods]]
 		- [[#Iteration Dunder Method]]
-		- [[#Representation Dunder Method]]
+		- [[#Display / Print Binary Search Tree]]
 - [[#Creation Of Binary Search Tree and Usage]]
 
 ---
@@ -44,13 +44,13 @@ status: Completed
 > Please refer to online resources or even use Large Language Models to learn more about 'Binary Search Tree ( BST )'.
 
 > [!WARNING]
-> As you know by now, in Python there are **no strict** ways to enforce '*private*' methods like in other programming languages such as [[Java Data View | Java Data View]].
+> As you know by now, in Python there are **no strict** ways to enforce '*private*' methods like in other programming languages such as [[Java Data View | Java]].
 > 
 > Therefore, how can we *have* **private methods** in this codebase?
 > 
 > Therefore, we do a little **gentleman's agreement** whereby, if we write a function / method that starts with and `_` character. For example, `_some_method` or `_helper_function`...
 > 
-> We as **programmers** are going to agree that we **won't** use this method *outside* the **current** `class`. Therefore, this is the reason as to why we "*can*" have **private methods** in Python!
+> We as **programmers**, are going to agree that we **won't** use this method *outside* the **current** `class`. Therefore, this is the reason as to why we "*can*" have **_"private"_ methods** in Python!
 
 ---
 
@@ -195,12 +195,21 @@ if __name__ == "__main__":
 
 # Function / Method Related To Binary Search Tree
 
-## Data Insertion Methods
+> [!WARNING]
+> You are going to see `key` a lot! Don't worry about it for now.
+> 
+> Just know that the `key` can only be `int`, `float` or `str`. This is because our data ( *for this "learning session"* ) is going to look like this: `(key, actual_data )`.
+> 
+> > Yes a [[Python - Tuples | tuple]] containing 2 values!
+> 
+> We need `key` to *form part* of these 3 data types above because we are going to be using the `key` for **comparison**!
+
+## Data Insertion Method
 
 ### Insert Method
 
 ```python
-# insert method to insert data into binary search tree ( based on nodes )
+# method to insert data into binary search tree ( based on nodes )
 def insert(self, key, value):
 	# check if the "root" node has data or not
 	if self.root is None:
@@ -274,7 +283,7 @@ def insert(self, key, value):
 ### Contains Dunder Method
 
 ```python
-# dunder method to check if a node is present or not through `key`
+# ( dunder ) method to check if a node is present or not through `key`
 def __contains__(self, key) -> bool:
 	# always start from the "root" node
 	current_node = self.root
@@ -312,7 +321,7 @@ def __contains__(self, key) -> bool:
 ### Search Method
 
 ```python
-# search method to search for the actual `Node`
+# method to search for the actual `Node`
 def search(self, key):
 	# always start from the "root" node
 	current_node = self.root
@@ -358,7 +367,7 @@ def search(self, key):
 ### Successor Private Method
 
 ```python
-# "private" method that finds the ( in-order ) successor of a node
+# ( "private" ) method that finds the ( in-order ) successor of a node
 # first moves to the right then keep staying left
 def _successor(self, node: Node):
 	# check if the node exists before proceding with search
@@ -401,7 +410,7 @@ def _successor(self, node: Node):
 > I think that this is the best place to add the `_predecessor` here as we have the `_successor` just above.
 
 ```python
-# "private" method that finds the ( in-order ) predecessor of a node
+# ( "private" ) method that finds the ( in-order ) predecessor of a node
 # first moves to the left then keep staying right
 def _predecessor(self, node: Node):
 	# check if the node exists before proceding with search
@@ -439,7 +448,7 @@ def _predecessor(self, node: Node):
 ### Private Delete Method
 
 ```python
-# "private" method to be able to delete and "re-link" nodes ( if need be )
+# ( "private" ) method to be able to delete and "re-link" nodes ( if need be )
 def _delete(self, node: Node):
 	# first condition ==> node is a leaf node
 	if node.left is None and node.right is None:
@@ -518,7 +527,7 @@ def _delete(self, node: Node):
 ### Delete Method
 
 ```python
-# delete method to search for a key and calls `_delete` "private" method
+# method to delete key / node and calls `_delete` "private" method
 def delete(self, key):
 	# intialise a node that is going to be the `Node` variable after searching
 	node = self.search(key)
@@ -557,7 +566,7 @@ def delete(self, key):
 ### Private In-Order Traversal
 
 ```python
-# "private" method that traverses the tree "in-order"
+# ( "private" ) method that traverses the tree "in-order"
 def _in_order_traversal(self, node):
 	# TIP: left node --> root node --> right node
 	# check if the node has data or not
@@ -585,7 +594,7 @@ def _in_order_traversal(self, node):
 ### Private Pre-Order Traversal
 
 ```python
-# "private" method that traverses the tree "pre-order"
+# ( "private" ) method that traverses the tree "pre-order"
 def _pre_order_traversal(self, node):
 	# TIP: root node --> left node --> right node
 	# check if the node has data or not
@@ -613,7 +622,7 @@ def _pre_order_traversal(self, node):
 ### Private Post-Order Traversal
 
 ```python
-# "private" method that traverses the tree "post-order"
+# ( "private" ) method that traverses the tree "post-order"
 def _post_order_traversal(self, node):
 	# TIP: left node --> right node --> root node
 	# check if the node has data or not
@@ -641,7 +650,7 @@ def _post_order_traversal(self, node):
 ### Traverse Method
 
 ```python
-# traverse method to traverse the binary search tree in different ways
+# method to traverse through binary search tree in different ways
 def traverse(self, order: str):
 	# check what type of traversal we want
 	if order == "in-order":
@@ -676,7 +685,7 @@ def traverse(self, order: str):
 ### Iteration Dunder Method
 
 ```python
-# dunder method to be able to iterate through the binary search tree
+# ( dunder ) method to be able to iterate through the binary search tree
 def __iter__(self):
 	# pause the function and get the nodes in sorted manner
 	yield from self._in_order_traversal(self.root)
@@ -687,10 +696,10 @@ def __iter__(self):
 > - Best Case: O(n)
 > - Worst Case: O(n)
 
-### Representation Dunder Method
+### Display / Print Binary Search Tree
 
 ```python
-# dunder method to be able to display the node
+# ( dunder ) method to be able to display the node
 def __repr__(self):
 	# iterate through binary search tree in order, convert to list, then to string
 	return str(list(self._in_order_traversal(self.root)))
@@ -700,6 +709,8 @@ def __repr__(self):
 > - The **overall** *running* time complexity for this method is going to be O(n)
 > - Best Case: O(n)
 > - Worst Case: O(n)
+
+---
 
 # Creation Of Binary Search Tree and Usage
 
@@ -744,7 +755,7 @@ class BinarySearchTree:
         # INFO: initially the 'BST' data structure is empty
         self.root = None
 
-    # insert method to insert data into binary search tree ( based on nodes )
+    # method to insert data into binary search tree ( based on nodes )
     def insert(self, key, value):
         # check if the "root" node has data or not
         if self.root is None:
@@ -802,7 +813,7 @@ class BinarySearchTree:
                     # simply `break` from the `while` loop
                     break
 
-    # dunder method to check if a node is present or not through `key`
+    # ( dunder ) method to check if a node is present or not through `key`
     def __contains__(self, key) -> bool:
         # always start from the "root" node
         current_node = self.root
@@ -826,7 +837,7 @@ class BinarySearchTree:
         # if we did not find the `key`
         return False
 
-    # search method to search for the actual `Node`
+    # method to search for the actual `Node`
     def search(self, key):
         # always start from the "root" node
         current_node = self.root
@@ -856,7 +867,7 @@ class BinarySearchTree:
                 else:
                     current_node = current_node.right
 
-    # "private" method that finds the ( in-order ) successor of a node
+    # ( "private" ) method that finds the ( in-order ) successor of a node
     # first moves to the right then keep staying left
     def _successor(self, node: Node):
         # check if the node exists before proceding with search
@@ -880,7 +891,7 @@ class BinarySearchTree:
             # finaly return the current node
             return current_node
 
-    # "private" method that finds the ( in-order ) predecessor of a node
+    # ( "private" ) method that finds the ( in-order ) predecessor of a node
     # first moves to the left then keep staying right
     def _predecessor(self, node: Node):
         # check if the node exists before proceding with search
@@ -904,7 +915,7 @@ class BinarySearchTree:
             # finaly return the current node
             return current_node
 
-    # "private" method to be able to delete and "re-link" nodes ( if need be )
+    # ( "private" ) method to be able to delete and "re-link" nodes ( if need be )
     def _delete(self, node: Node):
         # first condition ==> node is a leaf node
         if node.left is None and node.right is None:
@@ -969,7 +980,7 @@ class BinarySearchTree:
             # INFO: this basically either triggers first / second condition
             self.delete(successor)
 
-    # delete method to search for a key and calls `_delete` "private" method
+    # method to delete key / node and calls `_delete` "private" method
     def delete(self, key):
         # intialise a node that is going to be the `Node` variable after searching
         node = self.search(key)
@@ -983,7 +994,7 @@ class BinarySearchTree:
         # ==> call "private" method to delete and "re-link" nodes ( if need be )
         self._delete(node)
 
-    # "private" method that traverses the tree "in-order"
+    # ( "private" ) method that traverses the tree "in-order"
     def _in_order_traversal(self, node):
         # TIP: left node --> root node --> right node
         # check if the node has data or not
@@ -997,7 +1008,7 @@ class BinarySearchTree:
             # pause the function and "exhaust" entire right sub-tree second
             yield from self._in_order_traversal(node.right)
 
-    # "private" method that traverses the tree "pre-order"
+    # ( "private" ) method that traverses the tree "pre-order"
     def _pre_order_traversal(self, node):
         # TIP: root node --> left node --> right node
         # check if the node has data or not
@@ -1011,7 +1022,7 @@ class BinarySearchTree:
             # pause the function and "exhaust" entire right sub-tree second
             yield from self._pre_order_traversal(node.right)
 
-    # "private" method that traverses the tree "post-order"
+    # ( "private" ) method that traverses the tree "post-order"
     def _post_order_traversal(self, node):
         # TIP: left node --> right node --> root node
         # check if the node has data or not
@@ -1025,7 +1036,7 @@ class BinarySearchTree:
             # actually get the value as a tuple
             yield (node.key, node.value)
 
-    # traverse method to traverse the binary search tree in different ways
+	# method to traverse through binary search tree in different ways
     def traverse(self, order: str):
         # check what type of traversal we want
         if order == "in-order":
@@ -1044,12 +1055,12 @@ class BinarySearchTree:
         else:
             raise ValueError("\n\t << Unknown Order Entered!!! >>\n")
 
-    # dunder method to be able to iterate through the binary search tree
+    # ( dunder ) method to be able to iterate through the binary search tree
     def __iter__(self):
         # pause the function and get the nodes in sorted manner
         yield from self._in_order_traversal(self.root)
 
-    # dunder method to be able to display the node
+    # ( dunder ) method to be able to display the node
     def __repr__(self):
         # iterate through binary search tree in order, convert to list, then to string
         return str(list(self._in_order_traversal(self.root)))

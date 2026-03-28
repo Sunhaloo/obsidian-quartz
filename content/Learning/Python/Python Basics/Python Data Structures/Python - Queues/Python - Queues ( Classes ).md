@@ -16,7 +16,7 @@ status: Completed
 
 ## List of Contents
 
-- [[#Creation Of Class Queue]]
+- [[#Creation Of Queue Class]]
 - [[#Function / Method Related To Queue]]
 	- [[#Data Insertion Method]]
 		- [[#Enqueue Data Onto Queue]]
@@ -50,7 +50,7 @@ status: Completed
 > 
 > Again, for more information; please do refer to the '[[Python - Queues ( List )]]' note!
 
-# Creation Of Class Queue
+# Creation Of Queue Class
 
 ```python
 # our queue class
@@ -177,7 +177,7 @@ def __repr__(self) -> str:
 
 # Creation Of Queue and Usage
 
-Here is simple, example of what we get when we combine all of these functions above
+Here is simple, example of what we get when we combine all of these functions above.
 
 > [!INFO]
 > I hard-coded the input and deletion; but you can easily use a `for` loop to create another *simple* function if you want to allow for user input!
@@ -187,7 +187,7 @@ Here is simple, example of what we get when we combine all of these functions ab
 > [!WARNING]
 > This queue implementation will work with **all** data types!
 > 
-> I just choose to use `int`eger numbers for this one...
+> I just chose to use `int`eger numbers for this one...
 
 > [!NOTE]
 > For simplicity sake and to *conform* to the "*unofficial-official*" standards...

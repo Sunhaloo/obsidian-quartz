@@ -270,15 +270,17 @@ def display_queue(queue: deque):
 
 # Creation Of Double-Ended Queue and Usage
 
+Here is simple, example of what we get when we combine all of these functions above.
+
 > [!INFO]
 > I hard-coded the input and deletion; but you can easily use a `for` loop to create another *simple* function if you want to allow for user input!
 >
 > > Compared to '[[Python - Queues ( List )]]'; you basically use *our* functions!
->
+
 > [!WARNING]
 > This queue implementation will work with **all** data types!
 >
-> I just choose to use `int`eger numbers for this one...
+> I just chose to use `int`eger numbers for this one...
 
 ```python
 # import the "queue" / FIFO abstract data type from the 'collections' module

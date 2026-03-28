@@ -52,7 +52,7 @@ SORT file.name ASC
 - [[Python - Arrays]]
 - [[Python - Numpy]]
 
-#### Python - Singly Linked List Folder
+#### Python - Linked List Folder
 
 - [[Python - Singly Linked Lists]]
 - [[Python - Reverse Singly Linked List]]
@@ -72,6 +72,17 @@ SORT file.name ASC
 - [[Python - Queues ( Queue Module )]]
 - [[Python - Queues ( Linked List )]]
 - [[Python - Double-Ended Queues ( Collections Module )]]
+
+#### Python - Trees and Graphs
+
+- [[Python - Binary Search Tree]]
+
+#### Python - Heaps
+
+- [[Python - Minimum Heap ( Classes )]]
+- [[Python - Maximum Heap ( Classes )]]
+- [[Python - Minimum Heap ( Heap Module )]]
+- [[Python - Maximum Heap ( Heap Module )]]
 
 ### Python Algorithms Folder
 

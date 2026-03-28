@@ -345,7 +345,7 @@ def display_stack(stack: LifoQueue):
 
 # Creation Of Stack and Usage
 
-Here is simple, example of what we get when we combine all of these functions above
+Here is simple, example of what we get when we combine all of these functions above.
 
 > [!INFO]
 > I hard-coded the input and deletion; but you can easily use a `for` loop to create another *simple* function if you want to allow for user input!

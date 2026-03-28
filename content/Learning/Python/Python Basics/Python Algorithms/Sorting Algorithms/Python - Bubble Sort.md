@@ -91,6 +91,8 @@ def my_bubble_sort(arr: list):
 > ```
 > 
 > > Or you could use 'XOR' to swap the numbers like ThePrimeagen did here: https://www.youtube.com/shorts/DJxEYOC8IRc ( *mostly used in Low Level Languages and Integers data types* )
+> 
+> > **Don't** use the 'XOR' trick though... Its **not** has *efficient* as Python's [[Python - Tuples | tuple]] swapping!
 
 ## Optimised Bubble Sort
 

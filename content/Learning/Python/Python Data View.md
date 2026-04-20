@@ -91,8 +91,9 @@ SORT file.name ASC
 - [[Python - Bubble Sort]]
 - [[Python - Insertion Sort]]
 - [[Python - Merge Sort]]
-- [[Python - Quicksort]]
+- [[Python - Quick Sort]]
 - [[Python - Selection Sort]]
+- [[Python - Heap Sort]]
 
 #### Python Searching Algorithms Folder
 

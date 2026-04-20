@@ -1,6 +1,6 @@
 ---
-id: Python - Quicksort
-aliases: Implementation of Quicksort in Python
+id: Python - Quick Sort
+aliases: Implementation of Quick Sort in Python
 tags:
   - algos
   - arrays
@@ -16,20 +16,20 @@ status: Completed
 
 ## List of Contents
 
-- [[#Quicksort - Hoare]]
-	- [[#Lecturer's Quicksort]]
-	- [[#Lecturer' Optimised Quicksort ( Median of Three )]]
-- [[#Quicksort - Hoare Further Optimisation]]
+- [[#Quick Sort - Hoare]]
+	- [[#Lecturer's Quick Sort]]
+	- [[#Lecturer' Optimised Quick Sort ( Median of Three )]]
+- [[#Quick Sort - Hoare Further Optimisation]]
 	- [[#Median of Three and Insertion Sort]]
 	- [[#Median of Three and Selection Sort]]
-- [[#Quicksort - Lomuto]]
+- [[#Quick Sort - Lomuto]]
 - [[#Categories Which Insertion Sort Falls Into]]
-- [[#Quicksort Full Example Codes]]
-	- [[#Lecturer's Quicksort Full Code]]
-	- [[#Lecturer's Optimised ( Median of Three ) Quicksort Full Code]]
-	- [[#Optimised ( Median Of Three + Insertion Sort ) Quicksort Full Code]]
-	- [[#Optimised ( Median Of Three + Selection Sort ) Quicksort Full Code]]
-	- [[#Lomuto's Quicksort Full Code]]
+- [[#Quick Sort Full Example Codes]]
+	- [[#Lecturer's Quick Sort Full Code]]
+	- [[#Lecturer's Optimised ( Median of Three ) Quick Sort Full Code]]
+	- [[#Optimised ( Median Of Three + Insertion Sort ) Quick Sort Full Code]]
+	- [[#Optimised ( Median Of Three + Selection Sort ) Quick Sort Full Code]]
+	- [[#Lomuto's Quick Sort Full Code]]
 
 ---
 
@@ -42,18 +42,18 @@ status: Completed
 > - Michael Sambol: https://www.youtube.com/watch?v=Hoixgm4-P4M
 > - Marie Elaine Califf: https://www.youtube.com/watch?v=1Vl2TB7DoAM
 
-> [!NOTE] Difference Between **Hoare** and **Lumoto** Quicksort Algorithm
+> [!NOTE] Difference Between **Hoare** and **Lumoto** Quick Sort Algorithm
 > 
 > The main **difference** between these two algorithms is the *technique* that they use to sort the array.
 > 
 > What I mean by "*technique*"; is the way they **manipulate** / *move* data to sort the array.
 
 > [!TIP] 
-> Quicksort is just an "*expensive*" and **fast** version of [[Python - Selection Sort | Selection Sort]]!
+> Quick Sort is just an "*expensive*" and **fast** version of [[Python - Selection Sort | Selection Sort]]!
 
-# Quicksort - Hoare
+# Quick Sort - Hoare
 
-## Lecturer's Quicksort
+## Lecturer's Quick Sort
 
 As you can see from the above heading; this code that I am going to provide is a direct Python *conversion* of the Pseudocode that my lecturer provided.
 
@@ -134,7 +134,7 @@ Selecting the *element* at the **end** of the array means that its **simple** to
 > > 	- Again, O(n) is added because of how the `partition` function works
 > > - Thus the **running time complexity** ( *in terms of `T(n)`* ) becomes: T(n) = 2T(n/2) + O(n)
 
-## Lecturer' Optimised Quicksort ( Median of Three )
+## Lecturer' Optimised Quick Sort ( Median of Three )
 
 > [!INFO] More Resource(s):
 > - Dev Article: https://dev.to/pineapples/writing-a-median-of-three-pivot-helper-for-quicksort-289m
@@ -258,7 +258,7 @@ def quicksort(arr: list, low: int, high: int):
 > > - Compared to the *unoptimised* version, the *Median of Three* **significantly reduces** the probability of *hitting* the worst case
 > > 	- The *unoptimised* version hits O(n^2) [ $O(n^{2})$ ] on any already sorted array
 
-# Quicksort - Hoare Further Optimisation
+# Quick Sort - Hoare Further Optimisation
 
 Given that we have the `partition` function that keeps on "*splitting*" our array even when we **little** or **two** elements in the *sub-array*.
 
@@ -501,7 +501,7 @@ def quicksort(arr: list, low: int, high: int):
         quicksort(arr, partition_pos + 1, high)
 ```
 
-# Quicksort - Lomuto
+# Quick Sort - Lomuto
 
 > [!INFO] More Resource(s)
 > 
@@ -579,11 +579,11 @@ def quicksort(arr: list, low: int, high: int):
 
 ---
 
-# Quicksort Full Example Codes
+# Quick Sort Full Example Codes
 
 Well, what can I say apart that I am going to be writing "*full*" example codes from **each** of the above functions.
 
-## Lecturer's Quicksort Full Code
+## Lecturer's Quick Sort Full Code
 
 ```python
 # import the `randint` function from the 'random' module
@@ -667,7 +667,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## Lecturer's Optimised ( Median of Three ) Quicksort Full Code
+## Lecturer's Optimised ( Median of Three ) Quick Sort Full Code
 
 ```python
 # import the `randint` function from the 'random' module
@@ -781,7 +781,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## Optimised ( Median Of Three + Insertion Sort ) Quicksort Full Code
+## Optimised ( Median Of Three + Insertion Sort ) Quick Sort Full Code
 
 ```python
 # import the `randint` function from the 'random' module
@@ -930,7 +930,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## Optimised ( Median Of Three + Selection Sort ) Quicksort Full Code
+## Optimised ( Median Of Three + Selection Sort ) Quick Sort Full Code
 
 ```python
 # import the `randint` function from the 'random' module
@@ -1074,7 +1074,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## Lomuto's Quicksort Full Code
+## Lomuto's Quick Sort Full Code
 
 ```python
 # import the `randint` function from the 'random' module

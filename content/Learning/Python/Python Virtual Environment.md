@@ -88,7 +88,7 @@ cd virtual_env
 
 ```powershell
 # activate the python environment
-.\Scripts\activate.bat
+.\Scripts\activate
 ```
 
 > Linux / MacOS Users

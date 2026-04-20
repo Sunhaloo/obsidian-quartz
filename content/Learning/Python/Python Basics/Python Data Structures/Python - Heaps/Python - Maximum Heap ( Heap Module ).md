@@ -22,7 +22,7 @@ status: Completed
 			- [[#"Old" Meld Function]]
 		- [[#Old Data Removal Method]]
 			- [[#"Old" Extract Maximum Function]]
-	- [[#Maximum Heaps - Python Version 3.13 And Above]]
+	- [[#Maximum Heaps - Python Version 3.14 And Above]]
 		- [[#Data Insertion Methods]]
 			- [[#Heap Push ( Max ) Function]]
 			- [[#Meld Function]]
@@ -163,7 +163,7 @@ heapq.heapify(combined_max_heaps)
 extracted = heapq.heappop(max_heap)
 ```
 
-## Maximum Heaps - Python Version 3.13 And Above
+## Maximum Heaps - Python Version 3.14 And Above
 
 ### Data Insertion Methods
 

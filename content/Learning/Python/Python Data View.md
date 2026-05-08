@@ -97,7 +97,8 @@ SORT file.name ASC
 
 #### Python Searching Algorithms Folder
 
-- 
+- [[Python - Linear Search]]
+- [[Python - Binary and Interpolation Search]]
 
 #### Random Algorithms Folder
 

@@ -369,11 +369,6 @@ Float wFloatAuto = floatingNum;
 Boolean wBooleanAuto = booleanTrueFalse;
 ```
 
-> [!WARNING] The `.valueOf()` Method
-> The `.valueOf()` method only accepts datatypes of "*type*" `int` and `String`.
->
-> Therefore, we had to *cast* the 
-
 ### Converting Wrapper to Primitive - Unboxing
 
 > [!NOTE] Wrapper **To** Primitive First!
@@ -550,7 +545,7 @@ public class Main {
     int userAge = scanner.nextInt();
 
     // As user's age between 18 and 100 (exclusive of 100)
-    if (userAge > = 18 && userAge < 100) {
+    if (userAge >= 18 && userAge < 100) {
       System.out.println("You are an adult!");
 
       // If age entered is less than or equal to 0
@@ -558,11 +553,11 @@ public class Main {
       System.out.println("Error!");
 
       // If user's age is greater than or equal to 100
-    } else if (userAge > = 100) {
+    } else if (userAge >= 100) {
       System.out.println("Congratulations! You are about to die");
 
       // If user's age is between 1 and 18 (inclusive)
-    } else if (userAge > = 1 && userAge <= 18) {
+    } else if (userAge >= 1 && userAge <= 18) {
       System.out.println("Where is Your Guardian!");
     }
 
@@ -758,7 +753,7 @@ public class Main {
     System.out.println("\n");
 
     // Display same 5 integer numbers from '4' to '0' in reverse
-    for (int i = 4; i > = 0; i--) {
+    for (int i = 4; i >= 0; i--) {
       System.out.print(i + " ");
 
     }

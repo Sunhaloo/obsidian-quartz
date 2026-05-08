@@ -15,11 +15,11 @@ status: Completed
 - [[#Theoretical Part of Object Oriented Programming]]
 	- [[#Classes and Instances]]
 	- [[#Instances / Objects]]
-	- [[#Encapsulation]]
 	- [[#Inheritance]]
+	- [[#Encapsulation]]
 	- [[#Polymorphism]]
-		- [[#Method Overloading]]
-		- [[#Method Overriding]]
+		- [[#Method Overloading - Compile Time ( Static ) Polymorphism]]
+		- [[#Method Overriding - Runtime ( Dynamic ) Polymorphism]]
 - [[#Practical Part of Object Oriented Programming]]
 
 ---
@@ -69,18 +69,6 @@ Similarly, if you have a [Nissan R35 GTR](https://en.wikipedia.org/wiki/Nissan_G
 
 Now, these 2 objects are *fundamentally* the **same** but the will *behave* differently in addition to having different *properties*! For example: the 'GTR' will have more horsepower and might have a different colour compared to the 'Dacia'.
 
-### Encapsulation
-
-'Encapsulation' is the practice of **bundling** an object's *data* / *attributes* and the *methods* that operate on that data into a single, **self-contained** ( *isolated* ) unit: the **class**.
-
-> Its primary purpose is to **control access** to the object's *data* from the outside world.
-
-This is often referred to as **data hiding** or information hiding. By making *attributes* `private`, we **prevent** them from being directly *accessed* or *modified*. We then provide `public` methods ( *like `getters` and `setters`* ) as the **only** way to *interact* with that **private** data.
-
-Think of it like a pill capsule . The outer shell ( *i.e the class* ) holds and protects the active ingredients ( *i.e the data and methods* ) inside. You can't just open the capsule and pour out the ingredients; you have to swallow the whole thing, which is the intended way to use it.
-
-This ensures the *data* remains in a **valid** and **consistent state**, making the code more **robust** and **easier** to *maintain*.
-
 ### Inheritance
 
 Going back to our example of our class of `Vehicle`. Its safe to say that a *car* is pretty much the **same** as a, let's say *lorry*!
@@ -107,6 +95,22 @@ This helps us in a few ways:
 2. No need to write **same** attributes a number of times
 3. **Modifying** *parent* or *children* class can be easily done
 
+### Encapsulation
+
+'Encapsulation' is the practice of **bundling** an object's *data* / *attributes* and the *methods* that operate on that data into a single, **self-contained** ( *isolated* ) unit: the **class**.
+
+> Its primary purpose is to **control access** to the object's *data* from the outside world.
+
+This is often referred to as **data hiding** or information hiding. By making *attributes* `private`, we **prevent** them from being directly *accessed* or *modified*. We then provide `public` methods ( *like `getters` and `setters`* ) as the **only** way to *interact* with that **private** data.
+
+Think of it like a pill capsule . The outer shell ( *i.e the class* ) holds and protects the active ingredients ( *i.e the data and methods* ) inside. You can't just open the capsule and pour out the ingredients; you have to swallow the whole thing, which is the intended way to use it.
+
+This ensures the *data* remains in a **valid** and **consistent state**, making the code more **robust** and **easier** to *maintain*.
+
+> [!NOTE]
+> - **Encapsulation** *protects* the **data** ( *inside the `class`es* )
+> - **Abstraction** *protects* the **structure** ( *between the `class`es* )
+
 ### Polymorphism
 
 As the word '*Polymorphism*' suggests... "*It can take many forms*"! For example: An *object* the subclass of `Car` be have **different** characteristics like that `Car` object can be:
@@ -122,7 +126,7 @@ What I am trying it say that it can *change* depending on what is doing. In term
 
 > Same **method** name but different *behaviour* **depending** on the class!
 
-#### Method Overloading
+#### Method Overloading - Compile Time ( Static ) Polymorphism
 
 Think of the subclass of `Vehicle` whereby we do also have "*a*" `drive` function.
 
@@ -132,7 +136,9 @@ We can also have *another* `drive` method ( _Yes! with the **same** name_ ) that
 
 > Method **Overloading** happens inside the **same** class!
 
-#### Method Overriding
+#### Method Overriding - Runtime ( Dynamic ) Polymorphism
+
+> This is what is considered as the "*real*" Polymorphism!
 
 Method **Overriding** compared to Method **Overloading** is a bit different in terms that is happens in **multiple** classes!
 

@@ -3,6 +3,7 @@ id: SQL Procedural Programming - Cursors
 aliases: SQL Procedural Programming Traversing Result Sets with Cursors
 tags:
   - uni
+  - uom
   - db
   - SQL
 module: ICDT 1202Y
@@ -14,24 +15,23 @@ status: Completed
 ## List of Contents
 
 - [[#What is Database Cursor?]]
-  - [[#Why use Cursors?]]
+	- [[#Why use Cursors?]]
 - [[#Steps to Use Cursors]]
-  - [[#The Steps]]
-  - [[#Steps with Syntax]]
+	- [[#The Steps]]
+	- [[#Steps with Syntax]]
 - [[#Example of Cursor]]
-  - [[#Running / Execution of Cursor]]
+	- [[#Running / Execution of Cursor]]
 
 ---
 
 > [!NOTE] Resources
->
 > - https://learn.microsoft.com/en-us/sql/relational-databases/cursors?view=sql-server-ver16
 > - https://en.wikipedia.org/wiki/Cursor_(databases)
 > - https://learn.microsoft.com/en-us/sql/t-sql/language-elements/declare-cursor-transact-sql?view=sql-server-ver16
 
 # What is Database Cursor?
 
-Typically, when you run a `SELECT` Command ( _for example_ ). The _output_ / _result_ that will get is called the **result set**.
+Typically, when you run a `SELECT` Command ( *for example* ). The *output* / *result* that will get is called the **result set**.
 
 For example, let's say that we are working with this table below $\downarrow$:
 
@@ -45,9 +45,9 @@ L5	Sabrina	Senior Lecturer	Science
 L6	Gordon	Lecturer	Mech
 ```
 
-> I know that this is going to be a really _bad example_ but bear with me!
+> I know that this is going to be a really *bad example* but bear with me!
 
-Let's say that the above **result set** is only part of it and there are more _lecturers_.
+Let's say that the above **result set** is only part of it and there are more *lecturers*.
 
 If we want to so a simple **bulk** update whereby we are going to change all the lecturer in the `departement` of `ICT` to `Mech`. Then, the command that we are going to run will look something like this:
 
@@ -77,11 +77,11 @@ L6	Gordon	Lecturer	Mech
 > [!WARNING] This is not how it works in Real Life!
 > This almost **never happens**!
 >
-> Yes, in Universities specially, there might be department changes but not in "_bulk_"!
+> Yes, in Universities specially, there might be department changes but not in "*bulk*"!
 
-This is where **Cursors** come into play; whereby one can write elaborate code that will check a / multiple row(s) and then do an operation according to _some condition_!
+This is where **Cursors** come into play; whereby one can write elaborate code that will check a / multiple row(s) and then do an operation according to *some condition*!
 
-For example, instead of the _condition_ being on the `department`. The condition can be on the `lid` whereby, we can check **row by row** for the _value_ of `lid` and then perform certain operation on it. In this case, the "_updated_" result set could look like this $\downarrow$:
+For example, instead of the *condition* being on the `department`. The condition can be on the `lid` whereby, we can check **row by row** for the *value* of `lid` and then perform certain operation on it. In this case, the "*updated*" result set could look like this $\downarrow$:
 
 ```console
 lid	lname	title	department
@@ -95,18 +95,18 @@ L6	Gordon	Lecturer	ICT
 
 ## Why use Cursors?
 
-Again, in most applications that are connected to a database **server** ( _via the Database API_ ). The application normally does **not** work on the **entire** _result set_. Instead they work on **parts** of _result set_!
+Again, in most applications that are connected to a database **server** ( *via the Database API* ). The application normally does **not** work on the **entire** *result set*. Instead they work on **parts** of *result set*!
 
 > [!INFO] In Short
-> A database _cursor_ is an **object** that enables traversal over the rows of the _result set_.
-> It allows for the processing of **individual** row(s) returned by a _query_.
+> A database *cursor* is an **object** that enables traversal over the rows of the *result set*.
+> It allows for the processing of **individual** row(s) returned by a *query*.
 
 > [!INFO] Types of Cursors
 > Resource: https://learn.microsoft.com/en-us/sql/relational-databases/cursors?view=sql-server-ver16#type-of-cursors
 >
 > There are 4 types of **Cursors** in [[Microsoft SQL Server 2022 Introduction | SQL Server], namely:
 >
-> 1. Forward Only / _Firehose_ Cursors
+> 1. Forward Only / *Firehose* Cursors
 > 2. Static
 > 3. Keyset
 > 4. Dynamic
@@ -114,24 +114,25 @@ Again, in most applications that are connected to a database **server** ( _via t
 > > To learn more about these 'Types'; click the link above $\uparrow$!
 >
 > > [!NOTE] Default Cursor in SQL Server
-> > The **default** Cursor when you do `DECLARE CURSOR` ( _will get to Syntax later on_ ) is going to be a **forward only**.
+> > The **default** Cursor when you do `DECLARE CURSOR` ( *will get to Syntax later on* ) is going to be a **forward only**.
+>
 
 # Steps to Use Cursors
 
-Weather you are using 'Microsoft SQL Server' or some other type of relational database servers ( _like PostgreSQL_ ). There are some "_mandatory_" steps to be able to _create_ and _use_ a cursor.
+Weather you are using 'Microsoft SQL Server' or some other type of relational database servers ( *like PostgreSQL* ). There are some "*mandatory*" steps to be able to *create* and *use* a cursor.
 
-> The reason why "_mandatory_" is because even if you go to Wikipedia $\uparrow$. The steps are pretty much the **same**!
+> The reason why "*mandatory*" is because even if you go to Wikipedia $\uparrow$. The steps are pretty much the **same**!
 
 ## The Steps
 
-1. Provide the **result set** of an SQL statement to the _Cursor_.
-   - Define the **characteristics** / _code_ of the cursor
-2. _Execute_ / _Run_ the SQL Statement for Cursor to get populated with **all** the _rows_ of the result set
-3. Starts iterating ( _with our trusty `WHILE` loop_ ) through that result set given
+1. Provide the **result set** of an SQL statement to the *Cursor*.
+	- Define the **characteristics** / *code* of the cursor
+2. *Execute* / *Run* the SQL Statement for Cursor to get populated with **all** the *rows* of the result set
+3. Starts iterating ( *with our trusty `WHILE` loop* ) through that result set given
 4. Retrieve the row **in** the cursor you want to see.
-   - <span style="color: orange;"> Remember</span> : Operation to _retrieve_ 1 row / "_block_" of rows from Cursor is called **Fetch**
-5. If you have added things like `UPDATE` or `DELETE` in the _second_ setup
-   - These commands are executed at _this_ step
+	- <span style="color: orange;"> Remember</span> : Operation to *retrieve* 1 row / "*block*" of rows from Cursor is called **Fetch**
+5. If you have added things like `UPDATE` or `DELETE` in the *second* setup
+	- These commands are executed at *this* step
 6. Finally, **close** the Cursor
 
 ### Steps with Syntax
@@ -155,14 +156,14 @@ DECLARE CURSOR cursor_name FOR
 OPEN cursor_name;
 ```
 
-3. Fetch 1 Row from Cursor into variable / _variable list_
+3. Fetch 1 Row from Cursor into variable / *variable list*
 
 ```SQL
 -- fetch the first row from cursor to variable(s)
 FETCH NEXT FROM cursor_name INTO @var_1, @var_2, ...;
 ```
 
-4. Check whether `FETCH` was **successful** with _system variable_ `@@FETCHSTATUS` and continue to `FETCH` with `WHILE` loop
+4. Check whether `FETCH` was **successful** with *system variable* `@@FETCHSTATUS` and continue to `FETCH` with `WHILE` loop
 
 ```SQL
 -- keep looping and fetching rows if successful
@@ -189,13 +190,12 @@ DEALLOCATE cursor_name;
 ```
 
 > [!TIP] Some Facts
->
 > 1. We can have **multiple** cursors
 > 2. We can have **nested** cursors
 
 # Example of Cursor
 
-> This example is an "_updated_" version of the one in the Lecture Notes.
+> This example is an "*updated*" version of the one in the Lecture Notes.
 > The lecture notes can be found over at '[[Database Systems - Cursors + Triggers.pdf]'.
 
 ```SQL
@@ -213,22 +213,22 @@ DECLARE cursor_results CURSOR FOR
 BEGIN TRY
 	-- open the cursor and populate it with 'SELECT' statement
     OPEN cursor_results;
-
+	
 	-- fetch the first row from cursor to variable(s)
     FETCH NEXT FROM cursor_results INTO @lecturer_id, @lecturer_name, @lecturer_title;
-
+    
 	-- keep looping and fetching rows if successful
     WHILE @@FETCH_STATUS = 0
     BEGIN
 		-- NOTE: execution of Stored Procedure happens here
-
+		
         -- Instead of executing a stored procedure, we print the values
         PRINT 'Lecturer ID: ' + @lecturer_id + ' | Lecturer Name: ' + @lecturer_name + ' | Lecturer Title: ' + @lecturer_title;
-
+        
 		-- continue to populate cursor with rows
         FETCH NEXT FROM cursor_results INTO @lecturer_id, @lecturer_name, @lecturer_title;
     END;
-
+	
 	-- close and "remove" the cursor
     CLOSE cursor_results;
     DEALLOCATE cursor_results;
@@ -252,7 +252,7 @@ END CATCH;
 
 ## Running / Execution of Cursor
 
-In this case, running the above $\uparrow$ "_code_" will give us $\downarrow$:
+In this case, running the above $\uparrow$ "*code*" will give us $\downarrow$:
 
 ```SQL
 Lecturer ID: L1 | Lecturer Name: Ricardo | Lecturer Title: Lecturer

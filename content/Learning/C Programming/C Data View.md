@@ -62,7 +62,7 @@ SORT date ASC
 
 ### C Data Structures Folder
 
-- [[C - Static Arrays]]
+- [[REDO C - Static Arrays]]
 - [[C - Structs]]
 
 ### C Systems Programming

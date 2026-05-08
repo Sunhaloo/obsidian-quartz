@@ -7,13 +7,14 @@ tags:
   - SQL
   - db
   - uni
+  - uom
 author: S.Sunhaloo
 date: "2024-08-13"
 status: Completed
 ---
 
 > [!INFO]
-> This file / note is part of [[Microsoft SQL Server 2022 Introduction | MS SQL Server 2022] _documentation_.
+> This file / note is part of [[Microsoft SQL Server 2022 Introduction | MS SQL Server 2022] *documentation*.
 > I have already covered the basics of [[Database Languages#Data Definition Language ( DDL ) | Data Definition Language] in the file / note '[[SQL Commands - Data Definition Language ( DDL )]'
 
 ## List of Contents
@@ -28,8 +29,7 @@ status: Completed
 ---
 
 > [!WARNING]
-> I will only be going over / typing our the _clause_ and **not** the whole commands.
->
+> I will only be going over / typing our the *clause* and **not** the whole commands.
 > > But if I have to write an example; I will be typing everything out.
 
 # Constraints, Defaults and More
@@ -38,7 +38,7 @@ status: Completed
 
 The `UNIQUE` constraint in SQL Server ensures that **all** values in a column or set of columns are <span style="color: green;"> <em> distinct</em> </span> .
 
-This means that there will be **no** _duplicate_ values that will be inserted into a specific field.
+This means that there will be **no** *duplicate* values that will be inserted into a specific field.
 
 ### Example - Unique Constraint
 
@@ -103,7 +103,7 @@ CONSTRAINT notnull_PhoneNumber CHECK ( PhoneNumber IS NOT NULL )
 As you know a Primary Key <span style="color: red;"> <strong> cannot</strong> </span> be `NULL`; it needs to have a value at all costs!
 
 > If not, what's even the point of the Primary Key!
-> _To sit there and dance_?
+> *To sit there and dance*?
 
 ### Unique and Not Null Combination
 
@@ -146,9 +146,9 @@ CONSTRAINT PK_tblStaff PRIMARY KEY ( StaffID )
 
 As you know a **Composite** Primary Key is a key that is made up with 2 or more fields that can uniquely identify each record in a table.
 
-In [[Microsoft Access ( 2007 ) | Microsoft Access] to create a Composite Primary Key you just need to select ( _with the mouse... yuk_ ) the columns that you want to become part of the composite primary key and then right click and fucking finally select _Primary Key_.
+In [[Microsoft Access ( 2007 ) | Microsoft Access] to create a Composite Primary Key you just need to select ( *with the mouse... yuk* ) the columns that you want to become part of the composite primary key and then right click and fucking finally select *Primary Key*.
 
-In SQL Server ( _or SQL in general_ ), we can achieve this like so:
+In SQL Server ( *or SQL in general* ), we can achieve this like so:
 
 ```SQL
 CONSTRAINT contraint_name PRIMARY KEY ( column1, column2 )
@@ -161,23 +161,23 @@ CONSTRAINT PK_tblOrders PRIMARY KEY ( CustomerID, OrderID, ProductID )
 ```
 
 > [!WARNING]
-> We can **only** use the _second method_ in this case; because we need to pass in many values in `()`.
+> We can **only** use the *second method* in this case; because we need to pass in many values in `()`.
 
 ## Foreign Key Constraint
 
-So we all know what a [[Database Systems - Keys#Foreign Keys| Foreign Key] is... _Do You_?
+So we all know what a [[Database Systems - Keys#Foreign Keys| Foreign Key] is... *Do You*?
 
 > [!TIP]- Here is a Simple Definition
 > A Foreign Key is a field / column that is in one table that is a Primary Key field / column in **another** table.
 
-In SQL ( _from what I understand_ ), we need to create a new column ( _for our Foreign Key_ ); which by the way, can have the same name or different in the table where it becomes a Foreign Key.
+In SQL ( *from what I understand* ), we need to create a new column ( *for our Foreign Key* ); which by the way, can have the same name or different in the table where it becomes a Foreign Key.
 
 > I know that this $\uparrow$ was one of the shittiest explanation that I have ever gave.
 > So let me **show** it to you.
 
 Suppose that we have 2 tables; table 'Branch' and table 'Staff'
 
-> I am literally copying the my lecturer's table... _Because I fucking can_!!! ( _add evil laugh here_ )
+> I am literally copying the my lecturer's table... *Because I fucking can*!!! ( *add evil laugh here* )
 
 ### Creating Tables
 
@@ -246,8 +246,8 @@ Hence, we can make a template!
 
 #### Method 1: Next to Field Name
 
-> This clause is found in the "_foreign key_" table
-> What I am trying to say is that; _when the Primary Key becomes the Foreign Key_.
+> This clause is found in the "*foreign key*" table
+> What I am trying to say is that; *when the Primary Key becomes the Foreign Key*.
 
 ```SQL
 column_name DATATYPE FOREIGN KEY REFERENCES original_table_name ( original_field_name_in_original_table )
@@ -262,7 +262,7 @@ CONSTRAINT constraint_name FOREIGN KEY ( new_table_field_name ) REFERENCES origi
 #### Give Foreign Keys Different Names
 
 > [!BUG]- This is **NOT** Recommended!!!
-> But we _can_ do it.
+> But we *can* do it.
 
 Let's say that you have a table named 'Orders' and we have another table 'Customers'.
 
@@ -271,14 +271,14 @@ Let's say that you have a table named 'Orders' and we have another table 'Custom
 <p align="center"> Table: Customers</p>
 
 | <u> CustomerID</u> | First_Name | Last_Name | Address |
-| ------------------ | ---------- | --------- | ------- |
+| ----------------- | ---------- | --------- | ------- |
 
 <p align="center"> Table: Orders</p>
 
 | <u> OrderI</u> | CustomerID | OrderDate |
-| -------------- | ---------- | --------- |
+| ------------- | ---------- | --------- |
 
-As you can clearly see, we have `CustomerID` in the table 'Orders' which becomes the _Foreign Key_.
+As you can clearly see, we have `CustomerID` in the table 'Orders' which becomes the *Foreign Key*.
 
 Instead of writing it like so:
 
@@ -311,7 +311,7 @@ Let's say that we have like `EmployeeID` and the `EmployeeID` is in the format o
 Now, a new employee has just been employed and he does not currently have an Employee ID.
 Hence, we can give him, a temporary ID like 'TMP-EMP' by default.
 
-What I really mean is that, if you do **not** add any _value_ to the field / attribute `EmployeeID` it will automatically populate a value ( _that you told it to enter_ )
+What I really mean is that, if you do **not** add any *value* to the field / attribute `EmployeeID` it will automatically populate a value ( *that you told it to enter* )
 
 This is how you can implement in your columns / fields $\downarrow$:
 
@@ -365,8 +365,8 @@ column_name DATATYPE CHECK ( enter_check_here )
 CONSTRAINT constraint_name CHECK ( enter_check_here )
 ```
 
-> I will be showing you the examples below in the _sub-headings_...
-> I will also be only using the second _method_ with the `CONSTRAINT` statement
+> I will be showing you the examples below in the *sub-headings*...
+> I will also be only using the second *method* with the `CONSTRAINT` statement
 
 #### Check Constraint - Range
 
@@ -375,15 +375,15 @@ Take a look at this table $\downarrow$:
 Table: Employee
 
 | EmployeeID | First_Name | Last_Name | DOB | Address | Position | Salary |
-| ---------- | ---------- | --------- | --- | ------- | -------- | ------ |
+| ---------- | ---------- | --------- | --- | ------- | -------- |------ |
 
 Now, let's say that we are going to have a range for our salary.
-Our salary in this case must be _greater or equal_ to 25 000 and _less than or equal_ 50 000.
+Our salary in this case must be *greater or equal* to 25 000 and *less than or equal* 50 000.
 
 Hence, our check constraint would look something like this:
 
-> I am only writing the _clause_ and **not** the whole _command_ / _statement_
-> In addition, like I said I will be using the second _method_ only
+> I am only writing the *clause* and **not** the whole *command* / *statement*
+> In addition, like I said I will be using the second *method* only
 
 ```SQL
 CONSTRAINT chk_tblEmployee_salary CHECK ( salary > = 20000 AND salary <= 50000 )
@@ -407,9 +407,9 @@ CONSTRAINT chk_tblEmployee_salary CHECK ( salary BETWEEN 20000 AND 50000 )
 
 #### Check Constraint - List of Values
 
-In this company an employee can take a _position_ of 'Sales', 'Technician', 'Delivery' or 'Manager'
+In this company an employee can take a *position* of 'Sales', 'Technician', 'Delivery' or 'Manager'
 
-Hence, we can create a `CHECK` constraint that will allow the user to only enter these $\uparrow$ specific _positions_.
+Hence, we can create a `CHECK` constraint that will allow the user to only enter these $\uparrow$ specific *positions*.
 
 > Let me show you the template first!
 
@@ -425,28 +425,28 @@ CONSTRAINT chk_tblEmployee_position CHECK ( Position IN ( 'Sales', 'Technician',
 
 #### Check Constraint - Value Prefix
 
-What do I mean by "_Value Prefix_"?
+What do I mean by "*Value Prefix*"?
 
 Let's say that you have `StudentID` which is in the format below $\downarrow$:
 
-| `StudentID`                 |
-| --------------------------- |
+| `StudentID` |
+| ---------- |
 | <p align="center"> S001</p> |
 | <p align="center"> S002</p> |
 | <p align="center"> S521</p> |
-| <p align="center"> ...</p>  |
+| <p align="center"> ...</p> |
 
-As you can see we have the character 'S' in front of every _number_ in the `StudentID`.
+As you can see we have the character 'S' in front of every *number* in the `StudentID`.
 
-Hence, we can check if the format is correctly entered by using the _template_ below.
+Hence, we can check if the format is correctly entered by using the *template* below.
 
 ```SQL
 CONSTRAINT start_with_StudentID CHECK ( StudentID LIKE 'S%' )
 ```
 
 > [!WARNING] BIG Warning
-> This will <span style="color: red;"> <strong> not</strong> </span> populate the character 'S'_automatically_
-> This is just a **check** to see if the value **entered** by a user is in _that_ required format.
+> This will <span style="color: red;"> <strong> not</strong> </span> populate the character 'S'*automatically*
+> This is just a **check** to see if the value **entered** by a user is in *that* required format.
 
 ---
 

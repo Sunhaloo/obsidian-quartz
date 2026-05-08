@@ -3,6 +3,7 @@ id: SQL Procedural Programming - Embedded DML
 aliases: SQL Procedural Programming with Database Operations
 tags:
   - uni
+  - uom
   - db
   - SQL
 module: ICDT 1202Y
@@ -12,59 +13,58 @@ status: Completed
 ---
 
 > [!NOTE]
-> This file is related to most things that we learned from [[Microsoft SQL Server 2022 Data View#Microsoft SQL Server 2022 SQL Commands Folder | SQL Data Manipulation Language] Lectures / Notes. This is because the reason we have _Procedural Programming_ is to run these **DML Commands** using _Stored Procedures_.
+> This file is related to most things that we learned from [[Microsoft SQL Server 2022 Data View#Microsoft SQL Server 2022 SQL Commands Folder | SQL Data Manipulation Language] Lectures / Notes. This is because the reason we have *Procedural Programming* is to run these **DML Commands** using *Stored Procedures*.
 >
 > > Head over to '[[SQL Procedural Programming - Introduction#Benefits of SQL Stored Procedures | SQL Procedural Programming - Introduction]' to learn more about their benefits!
 >
-> I initially thought taking these notes was unnecessary, but as the lecturer pointed out, "_the commands are slightly different from what we simply write_", making them essential.
+> I initially thought taking these notes was unnecessary, but as the lecturer pointed out, "*the commands are slightly different from what we simply write*", making them essential.
 
 ## List of Contents
 
 - [[#INSERT Command in Stored Procedures | INSERT Command]]
-  - [[#Example Simple Stored Procedures to Insert Data | Example Template]]
-    - [[#Example Actual Usage In SQL Server | Actual Example]]
-    - [[#Execution of Stored Procedure - INSERT Command]]
+	- [[#Example Simple Stored Procedures to Insert Data | Example Template]]
+		- [[#Example Actual Usage In SQL Server | Actual Example]]
+		- [[#Execution of Stored Procedure - INSERT Command]]
 - [[#DELETE Command in Stored Procedures | DELETE Command]]
-  - [[#Example Simple Stored Procedures to Insert Data | Example Template]]
-  - [[#Example 1 Delete Command in Stored Pocedure | Example 1]]
-    - [[#Execution of Stored Procedure - DELETE Command]]
-  - [[#Example 2 Delete Command with System Variable ROWCOUNT | Example 2]]
-    - [[#Execution of Stored Procedure - DELETE Command with ROWCOUNT]]
+	- [[#Example Simple Stored Procedures to Insert Data | Example Template]]
+	- [[#Example 1 Delete Command in Stored Pocedure | Example 1]]
+		- [[#Execution of Stored Procedure - DELETE Command]]
+	- [[#Example 2 Delete Command with System Variable ROWCOUNT | Example 2]]
+		- [[#Execution of Stored Procedure - DELETE Command with ROWCOUNT]]
 - [[#SELECT Command in Stored Procedures | SELECT Command]]
-  - [[#Example 1 Running SELECT Command Directly | Example 1: Running Command Directly]]
-  - [[#Example 2 Running SELECT Command with Variables | Example 2: Running Command with Variables]]
-  - [[#Example 3 Use Multiple Variables IN the SELECT Command | Example 3: Output Multiple Values ( with Variables )]]
+	- [[#Example 1 Running SELECT Command Directly | Example 1: Running Command Directly]]
+	- [[#Example 2 Running SELECT Command with Variables | Example 2: Running Command with Variables]]
+	- [[#Example 3 Use Multiple Variables IN the SELECT Command | Example 3: Output Multiple Values ( with Variables )]]
 - [[#Lecture Exercises]]
-  - [[#Lecture Exercise 1]]
-  - [[#Lecture Exercise 2]]
+	- [[#Lecture Exercise 1]]
+	- [[#Lecture Exercise 2]]
 
 ---
 
 > [!WARNING] Critical Mistake!!!
 > When I wrote most of the I did **not** add the [[SQL Procedural Programming - Exception Handling#Raising the Exception | THROW] statement!
 >
-> This is because I don't have anything to _raise_... Nevertheless, if some type of "_internal_" error occurs; it should be handled by the `BEGIN CATCH ... END CATCH` part!
+> This is because I don't have anything to *raise*... Nevertheless, if some type of "*internal*" error occurs; it should be handled by the `BEGIN CATCH ... END CATCH` part!
 
 > [!INFO] General Points
->
 > - They can execute **transactions** on the database application $\Rightarrow$ Preserving transaction **[[Database Transactions - ACID#Atomicity | atomicity]**
-> - They are a _server-sided_; they ensure **consistency** for such _transactions_
+> - They are a *server-sided*; they ensure **consistency** for such *transactions*
 > - A Stored Procedure may only contain **one** SQL Statement
->   - ( A Bad ) Example: A single `PRINT 'Hello Motherfuckers'`
+> 	- ( A Bad ) Example: A single `PRINT 'Hello Motherfuckers'`
 
 # INSERT Command in Stored Procedures
 
-Well, from our notes from the file '[[SQL Commands - Data Manipulation Language - INSERT]', we know that the general _template_ for inserting values into a table are:
+Well, from our notes from the file '[[SQL Commands - Data Manipulation Language - INSERT]', we know that the general *template* for inserting values into a table are:
 
 ```SQL
 INSERT INTO table_name ( field1, field2, field3, ... ) VALUES ( value1, value2, value3, ... );
 ```
 
-> Well, its basically the same things but instead of passing the **values** directly... Pass the **parameters** into the `VALUES` "_function_"!
+> Well, its basically the same things but instead of passing the **values** directly... Pass the **parameters** into the `VALUES` "*function*"!
 
 ## Example: Simple Stored Procedures to Insert Data
 
-> I will be writing the "_template_" first
+> I will be writing the "*template*" first
 
 ```SQL
 CREATE PROCEDURE sp_insert_values
@@ -96,6 +96,7 @@ END
 > Well, I have created a simple 'Test_DB' **database** whereby I have created a 'test' **table** and I am going to insert 1 value into the table.
 >
 > > For the fields / column of the table 'test'. Please refer to the `INSERT INTO test ( <here> )`!
+>
 
 #### "Prerequisites Commands"
 
@@ -126,7 +127,7 @@ CREATE TABLE test (
 SELECT * FROM test;
 ```
 
-Hence, we **should** get _nothing_!
+Hence, we **should** get *nothing*!
 
 ```console
 test_id    product_name    condition    price
@@ -186,7 +187,7 @@ EXEC sp_insert_values @test_id = 'S001', @product_name = 'Check Primary Key', @c
 
 This is what I get $\downarrow$:
 
-> Changed the format of the output message for improved readability on paper ( _paper does not have horizontal scrollbar_ )
+> Changed the format of the output message for improved readability on paper ( *paper does not have horizontal scrollbar* )
 
 ```console
 (0 rows affected)
@@ -208,7 +209,7 @@ Similar to our `INSERT` command, we are going to now try to use the `DELETE` com
 
 > BTW, if you need the notes for `DELETE` $\Rightarrow$ Please visit the file / note '[[SQL Commands - Data Manipulation Language - DELETE]'
 
-Again, here is our _template_ for using the `DELETE` command by itself $\downarrow$:
+Again, here is our *template* for using the `DELETE` command by itself $\downarrow$:
 
 ```SQL
 DELETE table_name WHERE condition;
@@ -216,7 +217,7 @@ DELETE table_name WHERE condition;
 
 ## Example: Simple Stored Procedures to Insert Data
 
-> Here is a _general template_!
+> Here is a *general template*!
 
 ```SQL
 CREATE PROCEDURE sp_delete_value
@@ -258,7 +259,7 @@ BEGIN
 	BEGIN TRY
 		-- run the `DELETE` command
 		DELETE test WHERE test_id = @test_id;
-
+		
 		--output appropriate message
 		PRINT 'Record was Deleted Successfully';
 	END TRY
@@ -321,15 +322,15 @@ Record was Deleted Successfully
 > [!WARNING]
 > Well, as you know; the `DELETE` command will not give use any **errors** even if the record you are trying to delete does **not** exists.
 >
-> Hence, we are going to create another Stored Procedure that will make the use of the system variable `@@ROWCOUNT` so that we can have proper _errors_.
+> Hence, we are going to create another Stored Procedure that will make the use of the system variable `@@ROWCOUNT` so that we can have proper *errors*.
 
 ### Example 2: Delete Command with System Variable ROWCOUNT
 
-> [!INFO] Before We Start, "_What is the `ROWCOUNT` System Variable_?"
-> Well, a System Variable in SQL Server is a **variable** that cannot be _declared_ or _assigned_.
-> We can ( _from what I am seeing and understanding_ ) only make comparison with it similar to something like a function like `string.isdigit()` from Python.
+> [!INFO] Before We Start, "*What is the `ROWCOUNT` System Variable*?"
+> Well, a System Variable in SQL Server is a **variable** that cannot be *declared* or *assigned*.
+> We can ( *from what I am seeing and understanding* ) only make comparison with it similar to something like a function like `string.isdigit()` from Python.
 >
-> The purpose of the `@@ROWCOUNT` system variable ( _system variables should be preceded with `@@` characters_ ) is that is stores the number of rows which have been affected by the last **executed statement**
+> The purpose of the `@@ROWCOUNT` system variable ( *system variables should be preceded with `@@` characters* ) is that is stores the number of rows which have been affected by the last **executed  statement**
 
 #### Creation of Delete Stored Procedure with ROWCOUNT System Variable
 
@@ -368,7 +369,7 @@ END
 ```
 
 > [!TIP]
-> If you have already pasted the first iteration of the _Stored Procedure_ with the `DELETE` command. You can then copy the above $\uparrow$ code from and then change the `CREATE` command to the `ALTER` command so that you **don't** need to `DROP` the Stored Procedure!
+> If you have already pasted the first iteration of the *Stored Procedure* with the `DELETE` command. You can then copy the above $\uparrow$ code from and then change the `CREATE` command to the `ALTER` command so that you **don't** need to `DROP` the Stored Procedure!
 
 ##### Execution of Stored Procedure - DELETE Command with ROWCOUNT
 
@@ -389,12 +390,13 @@ Record You are Trying to Delete Has NOT Been Found!!!
 > [!TIP]
 > The System Variable `@@ROWCOUNT` can also be used with the `UPDATE` command.
 >
-> > I you want an example of how this is done ( _which is basically the same_ ); you can check out [[#Lecture Exercise 1]]
+> > I you want an example of how this is done ( *which is basically the same* ); you can check out [[#Lecture Exercise 1]]
+>
 
 # SELECT Command in Stored Procedures
 
-> Does it need an _introduction_? Like actually, does it?
-> In addition, I don't think that I will be adding a _template_ for this one.
+> Does it need an *introduction*? Like actually, does it?
+> In addition, I don't think that I will be adding a *template* for this one.
 
 ## Example 1: Running SELECT Command Directly
 
@@ -425,7 +427,7 @@ END
 In our case, we should get the result of $\downarrow$:
 
 ```console
-Lecturer ID; 	Lecturer Name: 	Details:
+Lecturer ID; 	Lecturer Name: 	Details: 
 L1	Ricardo	Lecturer --> ICT Department.
 L2	Paula	Assoc Prof --> ICT Department.
 L3	Emma	Assoc Prof --> SIS Department.
@@ -439,7 +441,7 @@ L6	Gordon	Lecturer --> Mech Department.
 
 ## Example 2: Running SELECT Command with Variables
 
-Here, instead of running the "_raw_" `SELECT` command directly, we are going to place _said_ command in a **variable**.
+Here, instead of running the "*raw*" `SELECT` command directly, we are going to place *said* command in a **variable**.
 
 ```SQL
 -- create procedure that will display names from table 'lecturer'
@@ -488,7 +490,7 @@ Name of Lecturer: Emma
 
 ## Example 3: Use Multiple Variables IN the SELECT Command
 
-This is _similar_ to the [[#Example 1 Running SELECT Command Directly | first example]; but now, instead of passing directly to a string. We are going to pass the **values** into the _variables_.
+This is *similar* to the [[#Example 1 Running SELECT Command Directly | first example]; but now, instead of passing directly to a string. We are going to pass the **values** into the *variables*.
 
 ```SQL
 -- create procedure that will display details of lecturer from table 'lecturer'
@@ -540,17 +542,18 @@ EXEC sp_display_lecturer_details @id = 'L3';
 > I will be adding all the output in the same code block below $\downarrow$:
 
 ```console
-Name: 	Title: 	Department:
+Name: 	Title: 	Department: 
 Ricardo	Lecturer	ICT
 
-Name: 	Title: 	Department:
+Name: 	Title: 	Department: 
 Paula	Assoc Prof	ICT
 
-Name: 	Title: 	Department:
+Name: 	Title: 	Department: 
 Emma	Assoc Prof	SIS
 ```
 
 ---
+
 
 # Lecture Exercises
 
@@ -601,7 +604,7 @@ BEGIN
         END
 
         -- delete part of the code
-
+  
         -- NOTE: we cannot simply delete the required lecturer from the 'lecturer' table
         -- this is because 'lecturer' table is "connected" with 'module' table and itself is "connected" with 'registers'
         -- therefore, we need to delete from 'registers' then 'module' and last but not least 'lecturer'
@@ -717,7 +720,7 @@ Hence, this means that the lecturer which currently have the department of `Scie
 > - `M2` and `M4` will be gone from 'registers'
 
 > [!NOTE] Why will `M3` be gone from 'module'
-> My reasoning is that because its _attached_ to the lecturer `Ricardo` and **before** we execute the Stored Procedure. He **was** in the department of `ICT` where he was teaching _programming_.
+> My reasoning is that because its *attached* to the lecturer `Ricardo` and **before** we execute the Stored Procedure. He **was** in the department of `ICT` where he was teaching *programming*.
 > Now given that we change the department of `Ricardo` $\Rightarrow$ There is currently no one to teach programming.
 
 ```SQL
@@ -775,7 +778,7 @@ BEGIN
     BEGIN TRY
 		-- declaration of variable
         DECLARE @updated_records_count INT;
-
+		
         -- update part of the code
         UPDATE module SET
             -- change the level of credits
@@ -785,7 +788,7 @@ BEGIN
 
 		-- initialise the variable to get the amount of rows update
 		SET @updated_records_count = @@ROWCOUNT
-
+		
         -- check if records have been updated
         IF @updated_records_count = 0
         BEGIN
@@ -850,10 +853,11 @@ M5	Web	2	5	L2
 > As you can see; `AND`.
 >
 > > Well that's $\uparrow$ the reason!
+>
 
 #### Update the Values in Table
 
-Hence, if you want to see any changes when we `EXEC`ute the Stored Procedure... Let's go ahead and _update_ the value for `level` where `mid` is `M1`.
+Hence, if you want to see any changes when we `EXEC`ute the Stored Procedure... Let's go ahead and *update* the value for `level` where `mid` is `M1`.
 
 ```SQL
 -- update the first module id
@@ -864,7 +868,7 @@ UPDATE module SET
 WHERE mid = 'M1';
 ```
 
-Hence, in this case, the **values** for the _first_ record will become $\downarrow$:
+Hence, in this case, the **values** for the *first* record will become $\downarrow$:
 
 ```console
 mid	mname	level	credits	lecturerid

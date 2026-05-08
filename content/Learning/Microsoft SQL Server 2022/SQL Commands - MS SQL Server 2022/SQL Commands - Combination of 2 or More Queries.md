@@ -4,6 +4,7 @@ aliases: SQL UNION, INTERSECT, EXCEPT ( Difference )
 tags:
   - SQL
   - uni
+  - uom
   - db
 module: ICDT 1202Y
 author: S.Sunhaloo
@@ -22,8 +23,8 @@ status: Completed
 ## List of Contents
 
 - [[#Difference Between the Three Types]]
-  - [[#SQL Syntax]]
-  - [[#UNION]]
+	- [[#SQL Syntax]]
+	- [[#UNION]]
 
 ---
 
@@ -32,17 +33,17 @@ status: Completed
 ![[SQL - Commands - UNION, INTERSECT, EXCEPT.png | 600]]
 
 > [!INFO]
-> I will be referring to them as table '_R_' and table '_S_'!
+> I will be referring to them as table '*R*' and table '*S*'!
 
 # UNION
 
-> As you know, it will take everything from the Venn Diagram ( _inside the "circles"_ )
+> As you know, it will take everything from the Venn Diagram ( *inside the "circles"* )
 
 > [!TIP]- What is this `UNION` thing?
 >
 > > This was the bullet point from the lecture slide at page 35.
 >
-> A table containing all rows that are in **either** the _first_ table 'R' **or** the _second_ table 'S' **or** _both_.
+> A table containing all rows that are in **either** the *first* table 'R' **or** the *second* table 'S' **or** *both*.
 
 ## UNION Compatible
 
@@ -51,15 +52,15 @@ status: Completed
 
 From that above $\uparrow$, it means that the 2 tables must contain **same**:
 
-- Number of **Columns** ( _and not rows_! )
-  - Each column must have the same:
-    - Data Types
-    - Length ( _like the `CHAR(4)` like the number '4'_ )
+- Number of **Columns** ( *and not rows*! )
+	- Each column must have the same:
+		- Data Types
+		- Length ( *like the `CHAR(4)` like the number '4'* )
 
 > That, SQL does **not** no anything about that.
-> It is **us** ( _the user_ ) that has to check all of these!
+> It is **us** ( *the user* ) that has to check all of these!
 >
-> "_that the data values in the corresponding columns come from the same domain_".
+> "*that the data values in the corresponding columns come from the same domain*".
 
 ---
 
@@ -77,16 +78,14 @@ operator [ALL] [CORRESPONDING [BY {column1 [, ... ]}]
 > Where `operator` are **set operators** like `UNION`, `INTERSECT`, `EXCEPT` / `MINUS`
 
 > [!INFO] `ALL` Keyword
-> If _typed_; if will **not** remove duplicate rows from the result!
+> If *typed*; if will **not** remove duplicate rows from the result!
 > Example:
->
-> - `UNION ALL` $\Rightarrow$ Return **with** _duplicated_ rows
-> - `UNION` ( _without `ALL`_ ) $\Rightarrow$ Return _unique_ rows **only**
+> - `UNION ALL` $\Rightarrow$ Return **with** *duplicated* rows
+> - `UNION` ( *without `ALL`* ) $\Rightarrow$ Return *unique* rows **only**
 
 > [!INFO] `CORRESPONDING` Keyword
-> If _typed_; It matches **columns** by their _names_
->
-> - Allowing set operations to be performed on columns with the **same** _name_ across both result sets
+> If *typed*; It matches **columns** by their *names*
+> - Allowing set operations to be performed on columns with the **same** *name* across both result sets
 >
 > > [!WARNING]
 > > The `CORRESPONDING` Keyword works only on the `UNION` set operator in SQL Server 2022!
@@ -101,19 +100,19 @@ SELECT city, propertyNo FROM PropertyForRent;
 ```
 
 > [!BUG]- This Does **NOT** Work
-> The keyword `CORRESPONDING` is part of SQL Standard _commands_...
+> The keyword `CORRESPONDING` is part of SQL Standard *commands*...
 > But [[Microsoft SQL Server 2022 Introduction | Microsoft SQL Server 2022]] has **not** implemented it...
 > Hence, if you want to run the above $\uparrow$ statement; then the equivalent of it would be $\downarrow$:
 >
 > ```SQL
-> SELECT city, branchNo
+> SELECT city, branchNo 
 > FROM Branch
 > UNION ALL
-> SELECT city, propertyNo
+> SELECT city, propertyNo 
 > FROM PropertyForRent;
 > ```
 >
-> You are going to have make sure that **both** queries select the **same** _columns_!
+> You are going to have make sure that **both** queries select the **same** *columns*!
 >
 > > In our case it does!!!
 >
@@ -211,12 +210,12 @@ INTERSECT
 > ```
 
 > [!NOTE]
-> The the version of "_With `CORRESPONDING`_" meaning `INTERSECT ALL` is **not** available in SQL Server.
+> The the version of "*With `CORRESPONDING`*" meaning `INTERSECT ALL` is **not** available in SQL Server.
 > Hence, only the statement above $\uparrow$ works and will give you the intersection **without** any duplicate values.
 
 # EXCEPT / MINUS
 
-> This will find the **difference**
+> This will find the **difference** 
 
 > [!BUG] The `MINUS` Keyword does **not** work in SQL Server 2022!
 
@@ -236,6 +235,7 @@ EXCEPT
 > city
 > Bristol
 > ```
+
 
 ---
 

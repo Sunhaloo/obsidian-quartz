@@ -5,44 +5,45 @@ tags:
   - SQL
   - uni
   - db
+  - uom
 author: S.Sunhaloo
 date: 2024-08-15
 status: Completed
 ---
 
 > [!INFO]
-> The Lecture Notes / Slides are found in "[[Database Systems - SQL ( DML - Part 1 ).pdf]".
-> The _sub-heading_ for the `SELECT` statement starts at page 17.
+> The Lecture Notes / Slides are found in "[[Database Systems  - SQL ( DML - Part 1 ).pdf]".
+> The *sub-heading* for the `SELECT` statement starts at page 17.
 
 ## List of Contents
 
 - [[#The SELECT Command]]
-  - [[#Template]]
-    - [[#Literals]]
-  - [[#Examples]]
-    - [[#Display Everything]]
-    - [[#Displaying Everything with Specific Output Amount]]
-      - [[#Displaying Everything Within a Range]]
-    - [[#Display Specific Rows and Specific Columns]]
-      - [[#The Alias / AS Command]]
-      - [[#Display Without Repetition]]
-    - [[#Calculated Fields]]
-    - [[#Comparison Search Condition]]
-      - [[#The WHERE Clause]]
-    - [[#Compound Comparison Search Condition]]
-    - [[#Range Search Condition]]
-    - [[SQL Commands - Data Manipulation Language - Pattern Matching] $\leftarrow$ Found in Another File / Note
-    - [[#NULL Search Condition]]
-      - [[#Example of Query with NULL Values]]
-    - [[#Ordering of Columns]]
-      - [[#Single Column Ordering]]
-      - [[#Multi-Column Ordering]]
+	- [[#Template]]
+		- [[#Literals]]
+	- [[#Examples]]
+		- [[#Display Everything]]
+		- [[#Displaying Everything with Specific Output Amount]]
+			- [[#Displaying Everything Within a Range]]
+		- [[#Display Specific Rows and Specific Columns]]
+			- [[#The Alias / AS Command]]
+			- [[#Display Without Repetition]]
+		- [[#Calculated Fields]]
+		- [[#Comparison Search Condition]]
+			- [[#The WHERE Clause]]
+		- [[#Compound Comparison Search Condition]]
+		- [[#Range Search Condition]]
+		- [[SQL Commands - Data Manipulation Language - Pattern Matching] $\leftarrow$ Found in Another File / Note
+		- [[#NULL Search Condition]]
+			- [[#Example of Query with NULL Values]]
+		- [[#Ordering of Columns]]
+			- [[#Single Column Ordering]]
+			- [[#Multi-Column Ordering]]
 
 ---
 
 > [!NOTE]
 > Before I start; I would like to say something.
-> There are things that I did not know that we could do in SQL ( _insert mind-blown meme here_ )
+> There are things that I did not know that we could do in SQL ( *insert mind-blown meme here* )
 > Like there is so much that we did **not** learn in HSC.
 
 # The SELECT Command
@@ -61,33 +62,33 @@ FROM TableName [alias] [, ...]
 
 Then I went to check Microsoft's SQL Select statement documentation over at: https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver16.
 
-I found that it is _similar_ but not the same! Here is the template given by Microsoft $\downarrow$:
+I found that it is *similar* but not the same! Here is the template given by Microsoft $\downarrow$:
 
 ```SQL
-<SELECT statement> ::=
-    [ WITH { [ XMLNAMESPACES ,] [ <common_table_expression> [,...n] ] } ]
-    <query_expression>
-    [ ORDER BY <order_by_expression> ]
-    [ <FOR Clause> ]
-    [ OPTION ( <query_hint> [ ,...n ] ) ]
-<query_expression> ::=
-    { <query_specification> | ( <query_expression> ) }
-    [  { UNION [ ALL ] | EXCEPT | INTERSECT }
-        <query_specification> | ( <query_expression> ) [...n ] ]
-<query_specification> ::=
-SELECT [ ALL | DISTINCT ]
-    [TOP ( expression ) [PERCENT] [ WITH TIES ] ]
-    < select_list >
-    [ INTO new_table ]
-    [ FROM { <table_source> } [ ,...n ] ]
-    [ WHERE <search_condition> ]
-    [ <GROUP BY> ]
+<SELECT statement> ::=    
+    [ WITH { [ XMLNAMESPACES ,] [ <common_table_expression> [,...n] ] } ]  
+    <query_expression>   
+    [ ORDER BY <order_by_expression> ] 
+    [ <FOR Clause> ]   
+    [ OPTION ( <query_hint> [ ,...n ] ) ]   
+<query_expression> ::=   
+    { <query_specification> | ( <query_expression> ) }   
+    [  { UNION [ ALL ] | EXCEPT | INTERSECT }  
+        <query_specification> | ( <query_expression> ) [...n ] ]   
+<query_specification> ::=   
+SELECT [ ALL | DISTINCT ]   
+    [TOP ( expression ) [PERCENT] [ WITH TIES ] ]   
+    < select_list >   
+    [ INTO new_table ]   
+    [ FROM { <table_source> } [ ,...n ] ]   
+    [ WHERE <search_condition> ]   
+    [ <GROUP BY> ]   
     [ HAVING < search_condition > ]
 ```
 
 > [!WARNING]
 > As you can see in the above $\uparrow$ code block; we have the characters `::=`.
-> Even in HSC, I have never used it ( _who the fuck in `::=`_? ).
+> Even in HSC, I have never used it ( *who the fuck in `::=`*? ).
 > Hence, I will only be focusing on what I learned in HSC and with the Lecturer.
 
 ### Literals
@@ -97,7 +98,7 @@ SELECT [ ALL | DISTINCT ]
 
 #### Non-Numeric Literals
 
-What do you do if you want to display a "_string_" in a _Programming Language_.
+What do you do if you want to display a "*string*" in a *Programming Language*.
 
 Let's say that we are using [[Learning/Python/Python Data View| Python]; we would do something like this
 
@@ -119,7 +120,7 @@ city = 'Port Louis'
 > Well, from the above $\uparrow$ example; I guess you are already familiar with writing **numeric literals**
 
 > [!TIP]
-> If you are really going to learn / understand the `SELECT` command; then I suggest we start "_seeing_" and **writing** <span style="color: green;"> Examples</span> !!!
+> If you are really going to learn / understand the `SELECT` command; then I suggest we start "*seeing*" and **writing** <span style="color: green;"> Examples</span> !!!
 
 ---
 
@@ -136,7 +137,7 @@ SELECT col1, col2, col3, ... FROM table_name;
 To display every single fucking shitty values / fields; we can simply run the following command $\downarrow$:
 
 > In this example; we are going to retrieve every data / fields from the 'Staff' table.
-> Again, please refer to [[University Data View ( L1S1 )#Database Systems Labsheets| Database Labsheets] if you have not created the tables and inserted the values.
+> Again, please refer to [[University of Mauritius Data View ( L1S1 )#Database Systems Labsheets| Database Labsheets] if you have not created the tables and inserted the values.
 
 ```SQL
 SELECT * FROM Staff;
@@ -157,9 +158,9 @@ SELECT * FROM Staff;
 
 ### Displaying Everything with Specific Output Amount
 
-We just learned that we can use the `*` operator to _select_ all the **records** with all of its **fields** from a table.
+We just learned that we can use the `*` operator to *select* all the **records** with all of its **fields** from a table.
 
-Now, listen to this... What if we have a table that have a lot of records like in the thousands. We just want to get **some** _records_ so that we can see how the **data** looks like in that specific table.
+Now, listen to this... What if we have a table that have a lot of records like in the thousands. We just want to get **some** *records* so that we can see how the **data** looks like in that specific table.
 
 > How we would do that?
 
@@ -171,10 +172,9 @@ SELECT TOP 3 * FROM Staff;
 ```
 
 > [!WARNING] Yes!
-> The `TOP` keyword will **start** at the _first_ record **to** that _specified number_!
+> The `TOP` keyword will **start** at the *first* record **to** that *specified number*!
 
 > [!TIP] Therefore, Our Output Should Be:
->
 > ```csv
 > staffNo,fname,lname,position,sex,DOB,salary,branchNo
 > SA9,Mary,Howe,Assistant,F,1970-02-19,9000,B007
@@ -187,30 +187,28 @@ SELECT TOP 3 * FROM Staff;
 > What about a **Specific Range**?
 > Well, let's get right into it!
 
-Now, with this one; we are going to have to use the `OFFSET` and `FETCH` keyword. But, additionally, we are going to have to follow a _series_ of **steps**.
+Now, with this one; we are going to have to use the `OFFSET` and `FETCH` keyword. But, additionally, we are going to have to follow a *series* of **steps**.
 
 > Let me list them our for you!
 
 1. `SELECT` everything with our trusty `*` operator
 2. `ORDER BY` a specific column in found in table ( <strong> <span style="color: red;"> You must include this!!!</span> </strong> )
 3. Use `OFFSET` to **skip** $x$ amount of records from the top
-4. Use `FETCH` to actually _retrieve_ the desired amount of records
+4. Use `FETCH` to actually *retrieve* the desired amount of records
 
 With this knowledge, let's try to retrieve the record `3`, `4` and `5`!
 
 ```SQL
-
 ```
 
 > [!TIP] Our Correct Output!
->
 > ```csv
 > SG37,Ann,Beech,Assistant,F,1960-11-10,12000,B003
 > SG5,Susan,Brand,Manager,F,2040-06-03,24000,B003
 > SL21,John,White,Manager,M,2045-10-01,30000,B005
 > ```
 >
-> If you take a look above $\uparrow$ at our _full_ 'Staff' table; you should see that we clearly retrieved `3`, `4` and `5`!
+> If you take a look above $\uparrow$ at our *full* 'Staff' table; you should see that we clearly retrieved `3`, `4` and `5`!
 
 ### Display Specific Rows and Specific Columns
 
@@ -227,7 +225,7 @@ SELECT staffNo, lname, fname, salary FROM Staff;
 ```
 
 > [!TIP] Output of Selecting Specific Rows / Columns
-> Here we are going to get **every** _rows_ but <span style="color: red;"> not</span> every _fields_
+> Here we are going to get **every** *rows* but <span style="color: red;"> not</span> every *fields*
 >
 > ```csv
 > staffNo,lname,fname,salary
@@ -249,7 +247,7 @@ In the header of the `.csv` file you will see something like this:
 staffNo,lname,fname,salary
 ```
 
-Hence, in when the person is looking at the result ( _like in SQL Management Studio_ ); he will see something like this:
+Hence, in when the person is looking at the result ( *like in SQL Management Studio* ); he will see something like this:
 
 ```csv
 staffNo	lname	fname	salary
@@ -262,16 +260,16 @@ SL41	Lee	    Julie	9000
 ```
 
 > But what if I don't want to display `staffNo`, `lname` and `fname` and add my own **temporary** thing?
-> Because here `lname` could meaning **somethings** like "_Last Name_" or "_Loser's Name_"
+> Because here `lname` could meaning **somethings** like "*Last Name*" or "*Loser's Name*"
 > I think you get the point
 
 ##### Here comes the AS Command
 
-It allows us to change the _field_ name **temporarily**.
+It allows us to change the *field* name **temporarily**.
 
 > [!WARNING]
 > **Temporarily** and **not** permanently!
-> It will not change the actual _structure_ of the table; it simply provides a more readable way when selecting information.
+> It will not change the actual *structure* of the table; it simply provides a more readable way when selecting information.
 
 Therefore if we run the same command as above $\uparrow$, but this time using `AS`:
 
@@ -292,7 +290,7 @@ SL41	Lee	    Julie	9000
 ```
 
 > [!SUCCESS]
-> As you can see the header _values_ have changed!
+> As you can see the header *values* have changed!
 >
 > ```csv
 > Staff_Number	Last_Name	First_Name	Salary
@@ -321,7 +319,7 @@ PG4 <---
 
 #### The DISTINCT Command
 
-The `DISTINCT` command will **not** _display_ the repetition.
+The `DISTINCT` command will **not** *display* the repetition.
 
 ```SQL
 SELECT DISTINCT propertyNo FROM Viewing;
@@ -336,10 +334,10 @@ PG36
 PG4
 ```
 
-> Here we can clearly see that the repetition has been _removed_ when **running** the `SELECT` command.
+> Here we can clearly see that the repetition has been *removed* when **running** the `SELECT` command.
 
 > [!INFO]
-> It will _not_ "<span style="color: green;"> display</span> " and **not** "<span style="color: red;"> remove</span> " from the table!
+> It will *not* "<span style="color: green;"> display</span> " and **not** "<span style="color: red;"> remove</span> " from the table!
 
 > [!WARNING] Warning
 > What if we have multiple field / columns to display?
@@ -355,22 +353,22 @@ PG4
 > Hence to avoid repetition, we can simply write
 >
 > > [!SUCCESS] Valid Code
-> >
 > > ```SQL
 > > SELECT DISTINCT col1, col2, ... FROM table_name;
 > > ```
+>
 
 ### Calculated Fields
 
-Do you remember the _Calculated Fields / Values_ from [[Microsoft Access ( 2007 )]?
+Do you remember the *Calculated Fields / Values* from [[Microsoft Access ( 2007 )]?
 
 > I know you don't!
 
-So basically sometimes we need to change the values of one or some fields <span style="color: red;"> <strong> without</strong> </span> changing the values changing the _original_ values from the table... _I don't know the specific reasons why a company would do so_.
+So basically sometimes we need to change the values of one or some fields <span style="color: red;"> <strong> without</strong> </span> changing the values changing the *original* values from the table... *I don't know the specific reasons why a company would do so*.
 
-> But still, I need to know "_how_" we do it!
+> But still, I need to know "*how*" we do it!
 
-Normally, when we are create a **Calculated Field**; as the name suggest, its a field where we normally ( _most of the time_ ) perform mathematical operations on some [[#Numeric Literals | numeric] fields.
+Normally, when we are create a **Calculated Field**; as the name suggest, its a field where we normally ( *most of the time* ) perform mathematical operations on some [[#Numeric Literals | numeric] fields.
 
 > Hence, instead of giving out a template; I will go straight to the Example!
 
@@ -385,9 +383,7 @@ In our 'Staff' table, we have a `salary` field that keep track of the yearly sal
 > ```SQL
 > SELECT staffNo, salary FROM Staff;
 > ```
->
 > Here is the output after running that $\uparrow$ statement:
->
 > ```csv
 > staffNo,salary
 > SA9,9000
@@ -431,7 +427,7 @@ SL41,750
 > As you can see, we have `(No column name)`.
 > This is literally like MS Access; where we need to provide the column name.
 > Hence, this is why I showed you the [[#Here comes the AS Command | AS] command earlier.
-> Hence, instead of writing / typing the previous statement ( _whatever the fuck you want_ ): we can do something like this:
+> Hence, instead of writing / typing the previous statement ( *whatever the fuck you want* ): we can do something like this:
 >
 > ```SQL
 > -- did not add calculated field inside () to show it works
@@ -440,10 +436,11 @@ SL41,750
 >
 > > [!SUCCESS]
 > > Hence, this will be the header of the `.csv` file $\downarrow$:
-> >
+> > 
 > > ```csv
 > > staffNo	Monthly_Salary
 > > ```
+>
 
 ### Comparison Search Condition
 
@@ -462,7 +459,6 @@ WHERE salary > 10000;
 ```
 
 > [!TIP]- Staffs with Salary More than 10 000
->
 > ```csv
 > staffNo,fname,lname,position,salary
 > SG14,David,Ford,Supervisor,18000
@@ -473,18 +469,18 @@ WHERE salary > 10000;
 
 ##### Simple Comparison Operators
 
-| Operator | Meaning                  |
-| -------- | ------------------------ |
-| $=$      | Equal                    |
-| $\lt\gt$ | Not Equal To             |
-| $\lt$    | Less Than                |
-| $\gt$    | Greater Than             |
-| $\lt=$   | Less Than OR Equal To    |
-| $\gt=$   | Greater Than OR Equal To |
+| Operator | Meaning |
+| -------- | ------- |
+| $=$ | Equal |
+| $\lt\gt$ | Not Equal To |
+| $\lt$ | Less Than |
+| $\gt$ | Greater Than |
+| $\lt=$ | Less Than OR Equal To |
+| $\gt=$ | Greater Than OR Equal To |
 
 ##### Rules for Evaluating Conditional Expressions
 
-- Expression is evaluated **from** _left_ **to** _right_ $\rightarrow$
+- Expression is evaluated **from** *left* **to** *right* $\rightarrow$
 - Sub-expressions in **brackets** are evaluated **first**
 - `NOT`s are evaluated **before** `AND`s and `OR`s
 - `AND`s are evaluated **before** `OR`s
@@ -506,7 +502,7 @@ WHERE city = 'London' OR city = 'Glasgow';
 ```
 
 > [!TIP]- Branch Offices in London / Glasgow
-> We should only get the _details_ of Branch Offices in **London** and **Glasgow** only!
+> We should only get the *details* of Branch Offices in **London** and **Glasgow** only!
 >
 > ```csv
 > branchNo,street,city,postcode
@@ -528,7 +524,7 @@ You are your regular:
 
 #### Using Comparison Operators
 
-Let's go ahead and find all the staff with a `salary` between 20 000 and 30 000. In this, example, we are going to display all the _details_ for those specific staffs.
+Let's go ahead and find all the staff with a `salary` between 20 000 and 30 000. In this, example, we are going to display all the *details* for those specific staffs.
 
 ```SQL
 SELECT * FROM Staff
@@ -539,7 +535,7 @@ WHERE salary > = 20000 AND salary <= 30000;
 
 #### Using `BETWEEN` Keyword
 
-If we want to use the `BETWEEN` keyword for the above $\uparrow$ statement; we can easily convert the _operators_ to `BETWEEN` like so:
+If we want to use the `BETWEEN` keyword for the above $\uparrow$ statement; we can easily convert the *operators* to `BETWEEN` like so:
 
 ```SQL
 SELECT * FROM Staff
@@ -547,7 +543,7 @@ SELECT * FROM Staff
 WHERE salary BETWEEN 20000 AND 30000;
 ```
 
-> [!TIP] Hence, the output after running the above _results_...
+> [!TIP] Hence, the output after running the above *results*...
 > Using the first code block:
 >
 > ```csv
@@ -576,7 +572,7 @@ Remember that when we **created** our '[[Database Systems - Labsheet 1 ( L1S1 )#
 CONSTRAINT chk_position_tblStaff CHECK ( position IN ( 'Manager', 'Supervisor', 'Assistant' ) )
 ```
 
-Now, we want to display the staffs where the position is "_Manager_" and "_Supervisor_".
+Now, we want to display the staffs where the position is "*Manager*" and "*Supervisor*".
 
 Hence, we can use the following command below to show these people's `staffNo`, Last Name, First Name and lastly `position`
 
@@ -606,28 +602,28 @@ WHERE position IN ( 'Manager', 'Supervisor' );
 > ```
 >
 > This will output the **same** result at the above $\uparrow$ command that we used previously.
-> But then why use a _list of values_.
-> Well, here comes one of my favourite word ( _insert drum roll please_ )... "**Performance**"
-> While the `OR` keyword is good, its not really efficient in terms of typing and performance if the search condition is large ( _having multiple `OR ... OR ... OR ... OR ...`_ ) and if the table has many values.
+> But then why use a *list of values*.
+> Well, here comes one of my favourite word ( *insert drum roll please* )... "**Performance**"
+> While the `OR` keyword is good, its not really efficient in terms of typing and performance if the search condition is large ( *having multiple `OR ... OR ... OR ... OR ...`* ) and if the table has many values.
 
 ### NULL Search Condition
 
-Similar to [[Python Language | Python]'s `None` _reserved_ word. We can have `NULL` in SQL where we can specify if a "_cell_" ( _like a particular record's field_ ) is either `NULL` or not!
+Similar to [[Python Language | Python]'s `None` *reserved* word. We can have `NULL` in SQL where we can specify if a "*cell*" ( *like a particular record's field* ) is either `NULL` or not!
 
 > [!NOTE]
 > If you have a lot of `NULL` values in your Tables / Databases in general...
 > Then your Databases / Tables are **shit**
 >
-> "_Why can't we have `NULL` values?_"
+> "*Why can't we have `NULL` values?*"
 >
 > In general if you table has a lot of `NULL` values; this means that you are having / will have:
->
 > - Inconsistency of Data
 > - Decreases the Storage Space
+>
 
 #### Example of Query with NULL Values
 
-Here, we will find the all the "_viewings_" on property 'PG4' where a 'comment' has not been supplied.
+Here, we will find the all the "*viewings*" on property 'PG4' where a 'comment' has not been supplied.
 
 ```SQL
 SELECT clientNo, viewDate FROM Viewing
@@ -653,7 +649,7 @@ WHERE propertyNo = 'PG4' AND comment IS NULL;
 > The <span style="color: green;"> correct</span> way is like we have used above $\uparrow$ in the example.
 >
 > ```SQL
-> -- this is correct
+> -- this is correct 
 > comment IS NULL
 > ```
 
@@ -663,14 +659,14 @@ Well, we did this in HSC; hence, I think I am going to continue to explain the o
 
 #### Templates
 
-> Take this _template_ as a grain of salt.
+> Take this *template* as a grain of salt.
 > Because what we need to know and see are the examples; as with the examples we are going to see how its working.
 
-##### Single Column Ordering
+##### Single Column Ordering 
 
 > [!INFO]
 > If you do **not** specify if it is going to be `ASC` or `DESC`...
-> Just know that by _default_ it will **always** be in a _random_ order.
+> Just know that by *default* it will **always** be in a *random* order.
 
 ```SQL
 SELECT column1, column2, column3, ... FROM table_name
@@ -679,8 +675,8 @@ ORDER BY column_to_order [ASC|DESC];
 
 Let's take some examples:
 
-> Yes, I am taking the same examples from the Lecturer's slides because I want to not like "_fake_" the result that we got!
-> See, who told you that I am a bad person... _fucking shitter_!
+> Yes, I am taking the same examples from the Lecturer's slides because I want to not like "*fake*" the result that we got!
+> See, who told you that I am a bad person... *fucking shitter*!
 
 ```SQL
 SELECT staffNo, branchNo, lname AS Last_Name, fname AS First_Name FROM Staff
@@ -713,9 +709,8 @@ ORDER BY ptype;
 > [!NOTE]
 > If you just place the **column name** only and do not specify the **order**.
 > Then by default it will be `ASC`.
->
 > > BTW I said "_do not specify the **order**_"
-> > If you do not add the `ORDER BY` "_constraint_" ( _I guess_ ); then the fucking order will be fucking random.
+> > If you do not add the `ORDER BY` "*constraint*" ( *I guess* ); then the fucking order will be fucking random.
 
 And here again, is the above $\uparrow$ command's output:
 
@@ -736,16 +731,15 @@ SELECT column1, column2, column3, ... FROM table_name
 ORDER BY column1_to_order [ASC|DESC], column2_to_order [ASC|DESC], ...;
 ```
 
-Now, I have to tell you something... "_I don't understand the lecture slide_"
+Now, I have to tell you something... "*I don't understand the lecture slide*"
 
 > [!TIP] Lecturer's Note
->
 > > This is found on page 42
 > > This is what the Lecturer wrote:
 >
-> - Four flats in this list ( _referring to 'PropertyForRent' table_ )
->   - As no minor key specified, system arranges these rows in any order it chooses.
->   - To arrange the in order of `rent`, specify minor order
+> - Four flats in this list ( *referring to 'PropertyForRent' table* )
+> 	- As no minor key specified, system arranges these rows in any order it chooses.
+> 	- To arrange the in order of `rent`, specify minor order
 >
 > Before I decipher this $\uparrow$; let me go ahead and show you the statement and also the output.
 
@@ -785,21 +779,21 @@ As `ptype` is **first** and `rent` is **second**.
 It will first execute the first `ORDER BY` and then proceed to the second `ORDER BY`; so on and so forth.
 
 1. Primary Ordering
-   - The results are **first** sorted by `ptype`
-   - Meaning all rows with the same `ptype` value will be grouped together
+	- The results are **first** sorted by `ptype`
+	- Meaning all rows with the same `ptype` value will be grouped together
 2. Secondary Ordering
-   - Now, within each group of rows that have the same `ptype`
-     - Rows are then sorted by `rent` in `DESC` order
-   - Hence, for each specific `ptype`
-     - Properties with higher rent will appear before those lower rent
+	- Now, within each group of rows that have the same `ptype`
+		- Rows are then sorted by `rent` in `DESC` order
+	- Hence, for each specific `ptype`
+		- Properties with higher rent will appear before those lower rent
 
-> [!TIP] "_Minor_"?
-> Hence, the "_minor key_" and "_minor order_" was basically that $\uparrow$:
+> [!TIP] "*Minor*"?
+> Hence, the "*minor key*" and "*minor order*" was basically that $\uparrow$:
 >
 > - Primary Ordering
 > - Secondary Ordering
 >
-> > This is not the "_minor_" that you are thinking BTW!
+> > This is not the "*minor*" that you are thinking BTW!
 
 ---
 

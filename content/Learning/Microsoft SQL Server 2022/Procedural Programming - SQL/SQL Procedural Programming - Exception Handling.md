@@ -3,6 +3,7 @@ id: SQL Procedural Programming - Exception Handling
 aliases: SQL Procedural Programming TRY ... CATCH
 tags:
   - uni
+  - uom
   - db
   - SQL
 module: ICDT 1202Y
@@ -14,17 +15,16 @@ status: Completed
 ## List of Contents
 
 - [[#Exception Handling in SQL Server]]
-  - [[#General Template]]
-  - [[#Raising the Exception]]
-    - [[#General Template for THROWing Exceptions | General Template for THROW]]
-      - [[#Error Numbers - Codes and Description]]
-      - [[#Value for State]]
-  - [[#Usage]]
+	- [[#General Template]]
+	- [[#Raising the Exception]]
+		- [[#General Template for THROWing Exceptions | General Template for THROW]]
+			- [[#Error Numbers - Codes and Description]]
+			- [[#Value for State]]
+	- [[#Usage]]
 
 ---
 
 > [!INFO] Resources
->
 > - https://learn.microsoft.com/en-us/sql/t-sql/language-elements/try-catch-transact-sql?view=sql-server-ver16
 > - https://www.sqlshack.com/how-to-implement-error-handling-in-sql-server/
 
@@ -43,17 +43,17 @@ BEGIN
 	-- this is just like the `try` part in Python
 	BEGIN TRY
 		-- statements
-
+		
 		-- some condition
 		BEGIN
 			-- raise en exception
 			THROW ERROR_NUMBER, 'MESSAGE', STATE;
 		END
-
+		
 		-- statements
-
+		
 	END TRY
-
+	
 	-- catch the exception
 	-- this is just like the `try` part in Python
 	BEGIN CATCH
@@ -66,7 +66,7 @@ END
 
 > In my 2 celled brain, I think placing this here will make sense
 
-This is the **first** example that Microsoft gave us... I need this because I think that these _functions_ ( _see in the code_ ) will be important to me.
+This is the **first** example that Microsoft gave us... I need this because I think that these *functions* ( *see in the code* ) will be important to me.
 
 ```SQL
 -- Verify that the stored procedure does not already exist.
@@ -100,15 +100,16 @@ END CATCH;
 > These functions $\uparrow$ like: `ERROR_NUMBER()`, `ERROR_MESSAGE()`, `ERROR_LINE()` and the others can **only and only** be used in the `BEGIN CATCH ... END CATCH` block.
 >
 > > Again, they **cannot** be use elsewhere!!!
+>
 
 ## Raising the Exception
 
-Well, if you take a look at the official Microsoft Documentation ( _first link in the Resources Callout_ ), you are not going to see things that we _beginners_ will actually use. Instead you are going to the **proper** / _more complicated_ way of doing things.
+Well, if you take a look at the official Microsoft Documentation ( *first link in the Resources Callout* ), you are not going to see things that we *beginners* will actually use. Instead you are going to the **proper** / *more complicated* way of doing things.
 
 > This is why I am making this note is because
 > the way I used it in the [[Test#Question 2| Database Labsheet 1 ( L1S2 )] was **not** like the documentation
 
-To raise an exception in _Python_, we use the `raise` keyword. But in SQL, we can `THROW` that shit!
+To raise an exception in *Python*, we use the `raise` keyword. But in SQL, we can `THROW` that shit!
 
 ### General Template for THROWing Exceptions
 
@@ -116,36 +117,36 @@ To raise an exception in _Python_, we use the `raise` keyword. But in SQL, we ca
 THROW ERROR_NUMBER, 'MESSAGE', STATE;
 ```
 
-But how are we going to find about what _Error Number_ to choose and what _State_ to choose. Because your's truly did his research you can find it below $\downarrow$
+But how are we going to find about what *Error Number* to choose and what *State* to choose. Because your's truly did his research you can find it below $\downarrow$
 
 #### Error Numbers - Codes and Description
 
-| Error Number | Scenario                 | Description                                           |
-| ------------ | ------------------------ | ----------------------------------------------------- |
-| 50000        | General Exception        | Similar to Python's `except Exception:`               |
-| 50001        | Data Validation Error    | Invalid data or missing required input                |
-| 50002        | Input Format Error       | Invalid Format or Type                                |
-| 50003        | Business Logic Violation | Violation of business rules or constraints            |
-| 50004        | Record Not Found         | Data not found for a given identifier                 |
-| 50005        | Duplicate Data Error     | Attempt to insert a duplicate value where not allowed |
-| 50006        | Permission Denied        | User lacks sufficient permissions for an action       |
-| 50007        | Dependency Error         | Error caused by missing or unavailable dependencies   |
-| 50008        | Operation Timeout        | A query or operation timed out before completion      |
+| Error Number | Scenario | Description |
+| ------------ | -------- |----------- |
+| 50000 | General Exception | Similar to Python's `except Exception:` |
+| 50001 | Data Validation Error | Invalid data or missing required input |
+| 50002 | Input Format Error | Invalid Format or Type |
+| 50003 | Business Logic Violation | Violation of business rules or constraints |
+| 50004 | Record Not Found | Data not found for a given identifier |
+| 50005 | Duplicate Data Error | Attempt to insert a duplicate value where not allowed |
+| 50006 | Permission Denied | User lacks sufficient permissions for an action |
+| 50007 | Dependency Error | Error caused by missing or unavailable dependencies |
+| 50008 | Operation Timeout | A query or operation timed out before completion |
 
 #### Value for State
 
-Well the _first_ thing to know is that its **mandatory** and the _second_ thing is that the value for `STATE` has a range of **1** - **255**.
+Well the *first* thing to know is that its **mandatory** and the *second* thing is that the value for `STATE` has a range of **1** - **255**.
 
-Now, the thing about the state is that you can **choose** whatever the fuck you want from that _range_.
-But it is generally considered good practice to change the number if you have for example _Data Validation Error_ where we use the _state value_ of '1' and we use '2' for _Input Format Error_.
+Now, the thing about the state is that you can **choose** whatever the fuck you want from that *range*.
+But it is generally considered good practice to change the number if you have for example *Data Validation Error* where we use the *state value* of '1' and we use '2' for *Input Format Error*.
 
-Therefore when we are going to **debug** our program if any error occurred... We can easily see that is the error has we have planned ahead with our _State Values_!
+Therefore when we are going to **debug** our program if any error occurred... We can easily see that is the error has we have planned ahead with our *State Values*!
 
 ## Usage
 
 ### Example 1: Some Simple THROWs
 
-Given that you have this _block_ of code below $\downarrow$:
+Given that you have this *block* of code below $\downarrow$:
 
 ```SQL
 -- raise some general exceptions
@@ -167,13 +168,13 @@ Input Format Error Exception has Been Raised!!!
 
 > This will be shown in <span style="color: red;"> red</span> BTW!
 
-Now you might be saying: "_Well this is **not** how it should have ran_"... Like it should display all the exceptions all at once.
+Now you might be saying: "*Well this is **not** how it should have ran*"... Like it should display all the exceptions all at once.
 
 > This is where you are **very wrong**!
 
-The code above $\uparrow$ works as intended and its doing its job well. In most, programming languages when you are going to _raise_ or "_receive_" an exception from the program and you **don't** have your `TRY` and `CATCH` ( _not in the **Python Interpreter**_ ).
+The code above $\uparrow$ works as intended and its doing its job well. In most, programming languages when you are going to *raise* or "*receive*" an exception from the program and you **don't** have your `TRY` and `CATCH` ( _not in the **Python Interpreter**_ ).
 
-Therefore, this is what to be expected as, when SQL will interpret the line of code. It will see that the current line is raising an exception ( _or what normies call it... Error_ ) and it will **halt** the _program_ immediately.
+Therefore, this is what to be expected as, when SQL will interpret the line of code. It will see that the current line is raising an exception ( *or what normies call it... Error* ) and it will **halt** the *program* immediately.
 
 ### Example 2: Mimic `ValueError` from Python
 

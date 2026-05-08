@@ -5,6 +5,7 @@ tags:
   - SQL
   - uni
   - db
+  - uom
 author: S.Sunhaloo
 date: 2024-09-05
 status: Completed
@@ -12,7 +13,7 @@ status: Completed
 
 > [!INFO]
 > This is actually part of the file / note [[SQL Commands - Data Manipulation Language - SELECT]]
-> These notes are found in the "[[Database Systems - SQL ( DML - Part 2 ).pdf]".
+> These notes are found in the "[[Database Systems  - SQL ( DML - Part 2 ).pdf]".
 > Here is another file: "[[SQL Commands - Data Manipulation Language - Aggregate Functions]"
 >
 > Why is this file here?
@@ -22,11 +23,11 @@ status: Completed
 ## List of Contents
 
 - [[#Grouping]]
-  - [[#The Group By Clause]]
-    - [[#Examples of GROUP BY]]
+	- [[#The Group By Clause]]
+		- [[#Examples of GROUP BY]]
 - [[#Having]]
-  - [[#The Having Clause]]
-    - [[#Examples of HAVING]]
+	- [[#The Having Clause]]
+		- [[#Examples of HAVING]]
 
 ---
 
@@ -35,24 +36,25 @@ status: Completed
 ## The Group By Clause
 
 > [!TIP] Lecturer's Notes
-> `GROUP BY` groups the data from the `SELECT` <u> table(s)</u> ( _I don't really understand this_ ) and produces a **single** summary row for each group.
+> `GROUP BY` groups the data from the `SELECT` <u> table(s)</u> ( *I don't really understand this* ) and produces  a **single** summary row for each group.
 >
-> - Each item in `SELECT` list must be **single-valued** _per group_, and `SELECT` clause may only contain:
->   - field / column / attribute names
->   - [[SQL Commands - Data Manipulation Language - Aggregate Functions| aggregate functions]]
->   - constants
->   - expressions involving the combinations of the above $\uparrow$
-> - All column names in `SELECT` list must appear in `GROUP BY` clause unless _name_ is used only in aggregate functions
->   - Basically what the Lecturer was trying to say is that:
->     - If you do **have** a "_normal_" ( non-aggregate ) field that **needs** to be displayed _alongside_ with an aggregate function; we <span style="color: red;"> WILL</span> need to use the `GROUP BY` clause
->     - Else no need if you only have either:
->       1.  _Selects_ full list of non-aggregate fields
->       2.  _Selects_ full list of aggregate functions
-> - "_ISO_" ( _or **SQL Standard ( ISO / IEC )**_ ) considers two `NULLS` to be equal for purposes of `GROUP BY`
+> - Each item in `SELECT` list must be **single-valued** *per group*, and `SELECT` clause may only contain:
+> 	- field / column / attribute names
+> 	- [[SQL Commands - Data Manipulation Language - Aggregate Functions| aggregate functions]]
+> 	- constants
+> 	- expressions involving the combinations of the above $\uparrow$
+> - All column names in `SELECT` list must appear in `GROUP BY` clause unless *name* is used only in aggregate functions
+> 	- Basically what the Lecturer was trying to say is that:
+> 		- If you do **have** a "*normal*" ( non-aggregate ) field that **needs** to be displayed *alongside* with an aggregate function; we <span style="color: red;"> WILL</span> need to use the `GROUP BY` clause
+> 		- Else no need if you only have either:
+> 			1. *Selects* full list of non-aggregate fields
+> 			2. *Selects* full list of aggregate functions
+> - "*ISO*" ( _or **SQL Standard ( ISO / IEC )**_ ) considers two `NULLS` to be equal for purposes of `GROUP BY`
 >
 > > [!WARNING]
 > > If `WHERE` is used with the `GROUP BY` clause; `WHERE` is applied <span style="color: green;"> <strong> first</strong> </span> .
-> > Hence, the _groups_ are formed from the remaining rows satisfying the predicate.
+> > Hence, the *groups* are formed from the remaining rows satisfying the predicate.
+>
 
 ---
 
@@ -72,7 +74,7 @@ status: Completed
 
 #### Example: Errors!!!
 
-Remember how we were talking about things like: "_you need to have `GROUP BY` if you have a non-aggregate and an aggregate field in a `SELECT` statement_"?
+Remember how we were talking about things like: "*you need to have `GROUP BY` if you have a non-aggregate and an aggregate field in a `SELECT` statement*"?
 
 We are now going to prove this $\downarrow$
 
@@ -86,7 +88,6 @@ SELECT branchNo, COUNT(staffNo) AS Staff_COUNT, SUM(salary) AS Total_Salary FROM
 > This should return an Error that looks something along the lines of:
 
 > [!BUG]- Error
->
 > ```console
 > Column 'Staff.branchNo' is invalid in the select list
 > because it is not contained in
@@ -119,23 +120,23 @@ ORDER BY branchNo;
 
 > [!TIP] Takeaways
 >
-> > Not the thing that they give you after you ask for more "_briani_" in weddings.
-> > Fuck those people! Why not... _Fuck Society_!
+> > Not the thing that they give you after you ask for more "*briani*" in weddings.
+> > Fuck those people! Why not... *Fuck Society*!
 >
 > 1. `GROUP BY` only takes the non-aggregate functions as arguments.
 > 2. There is not trailing commas as the end of the `GROUP BY` statement.
 >
->    ```SQL
->    -- WRONG!!!
->    GROUP BY col1, col2, col3...,
->    -- GOOD
->    -- no trailing ',' character
->    GROUP BY col1, col2, col3...
->    ```
+> 	```SQL
+> 	-- WRONG!!!
+> 	GROUP BY col1, col2, col3...,
+> 	-- GOOD
+> 	-- no trailing ',' character
+> 	GROUP BY col1, col2, col3...
+> 	```
 
 #### Examples: Multiple Non-Aggregate Fields
 
-Similar to above ( _and also what we have been saying_ ); we are going to place all the fucking "_normal_" attributes in the `GROUP BY` clause.
+Similar to above ( *and also what we have been saying* ); we are going to place all the fucking "*normal*" attributes in the `GROUP BY` clause.
 
 ```SQL
 SELECT branchNo, staffNo, COUNT(*) Staff_COUNT FROM PropertyForRent
@@ -158,7 +159,7 @@ ORDER BY branchNo, staffNo;
 #### Example: Group By with Where Clause
 
 > As we have said again in the <span style="color: orange;"> warning</span> ;
-> We need to first write the `WHERE` clause "_statement_"; thus, they will be "grouped" on the `WHERE` condition
+> We need to first write the `WHERE` clause "*statement*"; thus, they will be "grouped" on the `WHERE` condition
 > If that makes sense.
 
 ```SQL
@@ -184,32 +185,32 @@ GROUP BY staffNo;
 
 # Having
 
-> What are you having for ( _insert something here_ )
+> What are you having for ( *insert something here* )
 
 > [!TIP] Explanation
-> Okay, now we have been able to display the non-aggregate columns with the _built-in_ functions.
-> I now have a question... "_How can we classify the aggregate functions_?"
+> Okay, now we have been able to display the non-aggregate columns with the *built-in* functions.
+> I now have a question... "*How can we classify the aggregate functions*?"
 > This is where the `HAVING` clause comes into play
 >
 > With **aggregate** functions, we cannot simply use the `WHERE` clause to perform something like this:
 >
 > > [!BUG] Wrong!!!
-> >
 > > ```SQL
 > > -- did I mention that this is wrong?
 > > SELECT COUNT(staffNo) AS Staff_COUNT FROM Staff
 > > -- you CANNOT do this!!!
 > > WHERE COUNT(staffNo) > 1;
 > > ```
-> >
+> > 
 > > This is the output that you are going to get $\downarrow$:
-> >
 > > ```console
-> > An aggregate may not appear in the WHERE clause
-> > unless it is in a subquery contained in a
-> > HAVING clause or a select list,
-> > and the column being aggregated is an outer reference.
+> An aggregate may not appear in the WHERE clause
+> unless it is in a subquery contained in a
+> HAVING clause or a select list,
+> and the column being aggregated is an outer reference.
 > > ```
+
+
 
 > [!NOTE]
 > You could say that the note / file '[[SQL Commands - Data Manipulation Language - Aggregate Functions]' is related to the `HAVING` clause.
@@ -220,9 +221,9 @@ GROUP BY staffNo;
 
 #### Example: Simple Example Without `GROUP By`
 
-> Using _my_ example for above
+> Using *my* example for above
 > [So that was a fucking lie](https://www.youtube.com/watch?v=G4Uw3m_dPpw); Yes, I normally create my own examples!
-> Nevertheless, this is a really _shitty_ example, because the output is _shit_.
+> Nevertheless, this is a really *shitty* example, because the output is *shit*.
 > But just know that it works with `HAVING`
 
 ```SQL
@@ -256,7 +257,7 @@ ORDER BY branchNo;
 
 > [!TIP] Output of `GROUP BY` together with `HAVING`
 >
-> > This is a "_real_" example from the Lecture Slides
+> > This is a "*real*" example from the Lecture Slides
 >
 > ```csv
 > branchNo	Staff_COUNT	Total
@@ -266,7 +267,7 @@ ORDER BY branchNo;
 > > [!NOTE]
 > > If the output does **not** look like what is on page 8 in the Lecture Slides...
 > > This is because I think I updated the data for the table Staff look like what is on page 8 in the Lecture Slides...
-> > Again "_I think_"... Don't Judge!
+> > Again "*I think*"... Don't Judge!
 
 ---
 

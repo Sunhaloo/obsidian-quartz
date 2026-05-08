@@ -5,6 +5,7 @@ tags:
   - SQL
   - uni
   - db
+  - uom
 author: S.Sunhaloo
 date: 2025-03-27
 status: Completed
@@ -19,24 +20,24 @@ status: Completed
 >
 > > [!NOTE]
 > > This note / file will be a bit different in terms of the presentation as I don't have any lecture PDFs to base myself.
-> >
+> > 
 > > This note will be a little bit like my programming notes.
+>
 
 ## List of Contents
 
 - [[#Database Backup and Recovery - Restoration]]
-  - [[#Database and Transaction Log Backups]]
-    - [[#Simple Backups]]
-    - [[#Proper Backup Backups]]
-  - [[#Database Restoration]]
-    - [[#Restore Database Command]]
-      - [[#Create Another Database - Use Different Database Name]]
-      - [[#Backup to Same Database ( Proper Way )]]
+	- [[#Database and Transaction Log Backups]]
+		- [[#Simple Backups]]
+		- [[#Proper Backup Backups]]
+	- [[#Database Restoration]]
+		- [[#Restore Database Command]]
+			- [[#Create Another Database - Use Different Database Name]]
+			- [[#Backup to Same Database ( Proper Way )]]
 
 ---
 
 > [!INFO] Resources
->
 > - https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver16
 > - https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/full-database-backups-sql-server?view=sql-server-ver16
 > - https://learn.microsoft.com/en-us/sql/relational-databases/system-tables/backupset-transact-sql?view=sql-server-ver16
@@ -52,7 +53,7 @@ status: Completed
 
 Given that I have the database 'PL_SQL' which I am not currently using... Let's go ahead and try to back this up!
 
-> I am going to backup **both** the actual _database_ and its _transactions logs_.
+> I am going to backup **both** the actual *database* and its *transactions logs*.
 
 - Backup Actual Database
 
@@ -75,7 +76,7 @@ TO DISK = 'PL_SQL_DB.bak';
 - Backup Database Transactions Logs
 
 ```SQL
--- backup our database
+-- backup our database 
 -- transactions logs for 'PL_SQL'
 BACKUP LOG PL_SQL
 -- specify backup file name
@@ -87,17 +88,16 @@ TO DISK = 'PL_SQL_LOG.bak';
 >
 > ```console
 > The statement BACKUP LOG is not allowed while the recovery model is SIMPLE. Use BACKUP DATABASE or change the recovery model using ALTER DATABASE.
-> Msg 3013, Level 16, State 1, Line 3
-> BACKUP LOG is terminating abnormally.
+Msg 3013, Level 16, State 1, Line 3
+BACKUP LOG is terminating abnormally.
 > ```
 >
 > We are going to get to the bottom of this later!
 
 > [!TIP] Some Tips!
->
 > - You can run these commands from the 'master' database or any other database
-> - Even though the `.bak` _file extension_ is not necessary
->   - Please do add it as its the standard ( _Linux users might understand this while Windows Fucking users might not_! )
+> - Even though the `.bak` *file extension* is not necessary
+> 	- Please do add it as its the standard ( *Linux users might understand this while Windows Fucking users might not*! )
 
 #### Output Location
 
@@ -109,7 +109,7 @@ C:\Program Files\Microsoft SQL Server\MSSQL._n_\MSSQL\Backup
 ```
 
 > [!NOTE] Changed Default Installation Directory
-> In my case, because I changed my installation directory for SQL Server. This `Backup` folder, _for me_, is found under:
+> In my case, because I changed my installation directory for SQL Server. This `Backup` folder, *for me*, is found under:
 >
 > ```console
 > C:\Microsoft SQL Server\SQL Server ( itself )\MSSQL16.SQLEXPRESS\MSSQL
@@ -121,22 +121,21 @@ Even though the above $\uparrow$ database backup statements are good and will do
 
 Nevertheless, this is not a proper way of doing things. But before, I get into the new statement that we need to run.
 
-Let us take a look at '_Backup Set_' and _Media Set_
+Let us take a look at '*Backup Set*' and *Media Set*
 
 #### Backup Set and Media Set
 
 > [!TIP] What is a Backup Set?
-> A **backup set** contains the _backup_ from a single, successful backup operation.
+> A **backup set** contains the *backup* from a single, successful backup operation.
 
 > [!TIP] What is a Media Set?
-> A **media set** is an ordered _collection_ of backup media, tapes or disk files.
+> A **media set** is an ordered *collection* of backup media, tapes or disk files.
 
 > [!INFO] What is the Difference Between Them?
->
-> - 1 **media set** can contain _many_ **backup set**
-> - **Media Set** contains additional information like _header_ / _metadata_ for the **backup set**
+> - 1 **media set** can contain *many* **backup set**
+> - **Media Set** contains additional information like *header* / *metadata* for the **backup set**
 
-Just know that the "_media_" set refers to the physical storage media being used. As [jeyoung](https://github.com/jeyoung) told me that you could have a database that is 1 Terabytes in size but it can be stored on 5 different 200 GB hard disks.
+Just know that the "*media*" set refers to the physical storage media being used. As [jeyoung](https://github.com/jeyoung) told me that you could have a database that is 1 Terabytes in size but it can be stored on 5 different 200 GB hard disks.
 
 Now let's go ahead and run some codes!
 
@@ -216,11 +215,12 @@ As the name suggests, the `WITH FORMAT` option will... Well **format** the physi
 > [!WARNING] So be careful when you are using it!
 > Hence, SQL Server provides the user with other options so that he / she does not need to necessarily use the `WITH FORMAT` and be able to use others. Below is a table about the other options.
 >
-> | Option        | Description                                  | Effect                                          |
-> | ------------- | -------------------------------------------- | ----------------------------------------------- |
-> | `WITH FORMAT` | Writes a new media header; creates a new set | Erases all previous backups on the device       |
-> | `WITH INIT`   | Overwrites existing backup sets              | Replaces backups from the beginning of the file |
-> | `WITH SKIP`   | Ignores header checks ( expiration, etc )    | Writes backup without validating media header   |
+> | Option | Description | Effect |
+> | ------ | ----------- | ------ |
+> | `WITH FORMAT` | Writes a new media header; creates a new set  | Erases all previous backups on the device |
+> | `WITH INIT` | Overwrites existing backup sets | Replaces backups from the beginning of the file |
+> | `WITH SKIP` | Ignores header checks ( expiration, etc ) | Writes backup without validating media header |
+
 
 ---
 
@@ -247,7 +247,7 @@ TO DISK = 'FULL_PL_SQL_LOG.bak';
 >
 > <p align="center"> <span style="color: red;"> Do NOT Use <code> FORMAT</code> with Transactions Logs</span> </p>
 >
-> This is because we are trying to backup a **log** file. As you know _logs_ are like _audits_ and keep track of every user's movements. Then why the fuck does one need to delete the log file?
+> This is because we are trying to backup a **log** file. As you know *logs* are like *audits* and keep track of every user's movements. Then why the fuck does one need to delete the log file?
 
 ## Database Restoration
 
@@ -262,9 +262,9 @@ Mode                 LastWriteTime         Length Name
 -a---          28/03/2025    10:39         110592 L1S2_Rev_LOG.bak
 ```
 
-> Yes, I do run MS SQL Server on Windows ( _therefore, 'All Windows Users Are Suckers' also applies to me_ )!
+> Yes, I do run MS SQL Server on Windows ( *therefore, 'All Windows Users Are Suckers' also applies to me* )!
 
-Therefore, let's go ahead and completely delete our database ( _including its database transaction logs_ ).
+Therefore, let's go ahead and completely delete our database ( *including its database transaction logs* ).
 
 ```SQL
 -- delete database
@@ -321,7 +321,7 @@ WITH STATS = 25;
 ```
 
 > [!WARNING]- Always Specify **Absolute** Path!!!
-> Compared to `TO DISK` where you can just add the _file name_ for the backup... `FROM DISK` requires one to specify the full path of the backup file.
+> Compared to `TO DISK` where you can just add the *file name* for the backup... `FROM DISK` requires one to specify the full path of the backup file.
 
 > [!SUCCESS] Output
 > 26 percent processed.
@@ -352,10 +352,10 @@ WITH RECOVERY,
 > Msg 3013, Level 16, State 1, Line 3 RESTORE LOG is terminating abnormally.
 
 > This is not going to work as when we did the backup... We did not specify any other specific option...
-> In the next section below $\downarrow$ We are going to learn how to _restore_ databases with the same name and do it _properly_.
+> In the next section below $\downarrow$ We are going to learn how to *restore* databases with the same name and do it *properly*.
 
 > [!SUCCESS] Nevertheless!
-> We did manage to _restore_ the database's Tables and Stored Procedures.
+> We did manage to *restore* the database's Tables and Stored Procedures.
 >
 > ```SQL
 > -- select and use 'L1S2_Revision_V2' database
@@ -395,7 +395,7 @@ WITH RECOVERY,
 
 #### Backup to Same Database ( Proper Way )
 
-What is the meaning of "_proper_" anyways!
+What is the meaning of "*proper*" anyways!
 
 - Restore the Actual Database and Database Transaction Logs
 
@@ -470,15 +470,15 @@ RESTORE DATABASE L1S1_Revision_V2 WITH RECOVERY
 ##### Explanation of `REPLACE`, `NORECOVERY` and `RECOVERY`
 
 - `REPLACE`
-  - Allows SQL Server to over-write the existing Database
-  - Similar to running `DROP DATABASE DB_Name` $\Rightarrow$ From what I can understand; it does it for you
-  - Allows you to use the same database name
-  - <span style="color: orange;"> Need to backup everything first though</span>
+	- Allows SQL Server to over-write the existing Database
+	- Similar to running `DROP DATABASE DB_Name` $\Rightarrow$ From what I can understand; it does it for you
+	- Allows you to use the same database name
+	- <span style="color: orange;"> Need to backup everything first though</span>
 - `NORECOVERY`
-  - Leaves the database in "_restoring_" or "_pending_" state
-  - Meaning that users in the system will **not** be able to access / modify the ( _existing_ ) database during that time
+	- Leaves the database in "*restoring*" or "*pending*" state
+	- Meaning that users in the system will **not** be able to access / modify the ( *existing* ) database during that time
 - `RECOVERY` $\Rightarrow$ Refer to Last Statement in Code Block $\uparrow$
-  - Bring the database online and allows users to access and modify things!
+	- Bring the database online and allows users to access and modify things!
 
 ---
 

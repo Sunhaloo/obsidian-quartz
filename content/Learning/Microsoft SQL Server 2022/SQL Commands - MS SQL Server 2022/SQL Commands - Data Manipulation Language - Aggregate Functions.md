@@ -6,6 +6,7 @@ tags:
   - SQL
   - uni
   - db
+  - uom
 author: S.Sunhaloo
 date: "2024-08-04"
 status: Completed
@@ -13,9 +14,8 @@ status: Completed
 
 > [!INFO]
 > This is actually part of the file / note [[SQL Commands - Data Manipulation Language - SELECT]]
-> These notes are found in the "[[Database Systems - SQL ( DML - Part 1 ).pdf]" starting at page 44 ( _the GOAT himself $\rightarrow$ 44_ )
-> Nevertheless, there will be thing that I will also include from "[[Database Systems - SQL ( DML - Part 2 ).pdf]"
->
+> These notes are found in the "[[Database Systems  - SQL ( DML - Part 1 ).pdf]" starting at page 44 ( *the GOAT himself $\rightarrow$ 44* )
+> Nevertheless, there will be thing that I will also include from "[[Database Systems  - SQL ( DML - Part 2 ).pdf]"
 > > Because all of it is related!
 
 > [!NOTE]
@@ -24,27 +24,26 @@ status: Completed
 >
 > Why am I adding this here?
 > Again, I was referring to a file that did not exists yet!
->
 > > But now it does!
+>
 
 ## List of Contents
 
 - [[#Aggregate Functions]]
-  - [[#Templates]]
-  - [[#COUNT Function]]
-    - [[#Examples of COUNT Function]]
-  - [[#They are Different]]
-  - [[#SUM and AVG Function]]
-    - [[#Example of AVG Function]]
-    - [[#Example of SUM Function]]
-  - [[#MIN and MAX Functions]]
+	- [[#Templates]]
+	- [[#COUNT Function]]
+		- [[#Examples of COUNT Function]]
+	- [[#They are Different]]
+	- [[#SUM and AVG Function]]
+		- [[#Example of AVG Function]]
+		- [[#Example of SUM Function]]
+	- [[#MIN and MAX Functions]]
 
 ---
 
 > [!INFO] Resource
->
 > - Website:
->   - https://learn.microsoft.com/en-us/sql/t-sql/functions/aggregate-functions-transact-sql?view=sql-server-ver16
+> 	- https://learn.microsoft.com/en-us/sql/t-sql/functions/aggregate-functions-transact-sql?view=sql-server-ver16
 
 # Aggregate Functions
 
@@ -52,7 +51,6 @@ status: Completed
 > They are functions in SQL that perform a calculation on a set of values and return a single value.
 
 > [!TIP] Common Aggregate Functions
->
 > 1. `COUNT()`
 > 2. `SUM()`
 > 3. `AVG()`
@@ -60,18 +58,17 @@ status: Completed
 > 5. `MAX()`
 
 > [!TIP] Some Properties of Aggregate Functions
->
 > - Each operate on a **single** column / field of a table and returns a single value
 > - `COUNT()`, `MIN()` and `MAX()` apply to **[[SQL Commands - Data Manipulation Language - SELECT#Non-Numeric Literals | Non-Numeric]** and **[[SQL Commands - Data Manipulation Language - SELECT#Numeric Literals | Numeric]**
-> - `SUM()` and `AVG()` are used on _Numeric_ fields **only**.
-> - `COUNT(*)` ( _we are going to see this later_ ) $\rightarrow$ counts **all rows / records** of a table
->   - Regardless if the table has `NULL` / duplicate values
->   - Hence, we could use the `DISTINCT` keyword to remove the duplicates
+> - `SUM()` and `AVG()` are used on *Numeric* fields **only**.
+> - `COUNT(*)` ( *we are going to see this later* ) $\rightarrow$ counts **all rows / records** of a table
+> 	- Regardless if the table has `NULL` / duplicate values
+> 	- Hence, we could use the `DISTINCT` keyword to remove the duplicates
 > - Apart from `COUNT(*)` $\rightarrow$ because `COUNT(col_name)` <span style="color: orange;"> removes</span> the `NULL` and duplicate values!
->   - Each function will eliminate `NULL` first
->   - After that, it operates **only** on remaining Non-`NULL` values
+> 	- Each function will eliminate `NULL` first
+> 	- After that, it operates **only** on remaining Non-`NULL` values
 > - `DISTINCT` keyword has no effect with `MIN()` and `MAX()`
->   - May have _issues_ with `SUM()` and `AVG()`
+> 	- May have *issues* with `SUM()` and `AVG()`
 
 > [!NOTE]
 > Aggregate Functions will return 'No Column Name' as the header in the results / `.csv` file.
@@ -80,9 +77,9 @@ status: Completed
 ## COUNT Function
 
 Basically the `COUNT()` function will return the number of values in a specified columns.
-In other words; it return the number of _records_ in a table.
+In other words; it return the number of *records* in a table.
 
-The `COUNT()` function is weird in the sense that you can use whatever column that you want. Because it will return the **same** _value_ for any field that you choose to pass in as _argument_ into the `()`.
+The `COUNT()` function is weird in the sense that you can use whatever column that you want. Because it will return the **same** *value* for any field that you choose to pass in as *argument* into the `()`.
 
 ### Templates
 
@@ -118,16 +115,16 @@ We are also going to do something close here:
 SELECT COUNT(*) FROM table_name;
 ```
 
-> This is the $\uparrow$ most used "_way_" of the `COUNT()` function.
+> This is the $\uparrow$ most used "*way*" of the `COUNT()` function.
 > But that does not mean its good for everything.
-> Because when [[SQL Commands - Data Manipulation Language - SELECT#The DISTINCT Command | `DISTINCT`] will come we are going to have to use the 'Single Column' _template_.
+> Because when [[SQL Commands - Data Manipulation Language - SELECT#The DISTINCT Command | `DISTINCT`] will come we are going to have to use the 'Single Column' *template*.
 > I will give example below! $\downarrow$
 
 ### Examples of COUNT Function
 
 > [!NOTE]
-> For this I will be using the same table for every "_sub-examples_" of the `COUNT()` function.
-> This is to be able to show you that _weirdness_ that I was talking about $\uparrow$
+> For this I will be using the same table for every "*sub-examples*" of the `COUNT()` function.
+> This is to be able to show you that *weirdness* that I was talking about $\uparrow$
 
 I will be using the 'Staff' table that I re-created in my `Test` Database. Here is how the current version of the 'Staff' table looks like.
 
@@ -163,7 +160,7 @@ SELECT COUNT(staffNo) AS Total FROM Staff;
 > Like I have said I have never used it and I don't know why you will have to do this...
 > Fuck me bro, while writing the line just above, I thought of a use case where you might need to use this method...
 
-Let's say that your table is not "_square_"; then I think that this will work
+Let's say that your table is not "*square*"; then I think that this will work
 
 ![[SQL Commands - Square vs Not-Square Table Difference.png | 650]]
 
@@ -173,7 +170,6 @@ SELECT COUNT(staffNo) AS COUNT_staffNo, COUNT(fname) AS COUNT_fname FROM Staff;
 
 > [!TIP] Output for `COUNT()` - Example 2
 > Hence, we are going to get this... As you can see they are **different**!
->
 > ```csv
 > COUNT_staffNo	COUNT_fname
 > 7           	6
@@ -188,7 +184,7 @@ SELECT COUNT(*) AS COUNT_ALL FROM Staff;
 ```
 
 > [!TIP] Output for `COUNT()` - Example 2
-> Here it will count **everything** like the `NULL` and also **duplicate** _values_.
+> Here it will count **everything** like the `NULL` and also **duplicate** *values*.
 >
 > ```csv
 > COUNT_ALL
@@ -216,9 +212,9 @@ CR62	    PA14	    2004-05-14 <--- In May Only
 CR76	    PG4	        2004-04-20
 ```
 
-Hence, we are not here to find our _how many people in total_ have view each property.
+Hence, we are not here to find our *how many people in total* have view each property.
 We are here to find out **how many different properties have visited / viewed a in May**.
-Hence, <span style="color: red;"> need</span> to use the `DISTINCT` keyword for us to get the _result_ we want!
+Hence, <span style="color: red;"> need</span> to use the `DISTINCT` keyword for us to get the *result* we want!
 
 Thus, this will be the statement that we are going to run $\downarrow$:
 
@@ -239,14 +235,14 @@ WHERE viewDate > '2004-05-01' AND viewDate < '2004-05-31';
 ---
 
 > [!NOTE] Are They Not Bland or Feel Like Information are Missing?
-> Yes, we do _know_ how many _client_ came to visit in the month of May...
+> Yes, we do *know* how many *client* came to visit in the month of May...
 >
-> "_But who are they? What properties did they view?_"
+> "*But who are they? What properties did they view?*"
 >
 > Hence, our query result can be improve and I will take an example...
 >
 > > For now, you might no understand what some of these **keywords** are going to...
-> > But I will go over them later on or on another note ( _check above $\uparrow$_ )
+> > But I will go over them later on or on another note ( *check above $\uparrow$* )
 >
 > ```SQL
 > -- in addition to displaying `COUNT()`, we are going to display the `clientNo`, `propertyNo`
@@ -268,23 +264,23 @@ WHERE viewDate > '2004-05-01' AND viewDate < '2004-05-31';
 > ```
 >
 > > Much more pleasing and yes it has more information also!
+>
 
 ---
 
 ## They are Different
 
-Okay, I did not know where to place this and it feels wrong to place it in a "warning" context; because it is a fundamental knowledge of how _Aggregate Functions_ work
+Okay, I did not know where to place this and it feels wrong to place it in a "warning" context; because it is a fundamental knowledge of how *Aggregate Functions* work
 
 Let's take a really simple example; something like this $\downarrow$:
 
-> This example was taken from the Lecture Slides ( _DML Part 2_ )
+> This example was taken from the Lecture Slides ( *DML Part 2* )
 > Because I was trying to come up with a good example; but I failed miserably.
 > Hence, Lecture Note's Examples it is!
 
 > [!WARNING]
 > It might seem weird for now, but I will go over them later on.
->
-> > Like I will make another file / note covering the _clauses_ that I will be using in the example below $\downarrow$:
+> > Like I will make another file / note covering the *clauses* that I will be using in the example below $\downarrow$:
 
 ```SQL
 SELECT branchNo, COUNT(staffNo) FROM Staff
@@ -309,11 +305,12 @@ WHERE COUNT(staffNo) > 1;
 > - `WHERE` $\rightarrow$ Filters by **Individual Rows**
 > - `HAVING` $\rightarrow$ Filters **Groups**
 >
-> For _Aggregate Functions_; for us to use them **with** like simple columns / fields like `staffNo`, `city`, we need to first do a `GROUP BY`
+> For *Aggregate Functions*; for us to use them **with** like simple columns / fields like `staffNo`, `city`, we need to first do a `GROUP BY`
 >
 > > Don't fucking ask me why BTW!
+>
 
-In short, what I am trying to say is that we need to first do `GROUP BY` and if we want to _replicate_ the `WHERE` clause; we need to instead use `HAVING`
+In short, what I am trying to say is that we need to first do `GROUP BY` and if we want to *replicate* the `WHERE` clause; we need to instead use `HAVING`
 
 Thus, in our example that we took that did not run using `WHERE`; its corrected version will be $\downarrow$:
 
@@ -397,10 +394,10 @@ WHERE position = 'Manager';
 
 ## MIN and MAX Functions
 
-As we have said above $\uparrow$; the `COUNT()`, `MIN()` and `MAX()` Function **works** on _numeric_ and _non-numeric_ data types.
+As we have said above $\uparrow$; the `COUNT()`, `MIN()` and `MAX()` Function **works** on *numeric* and *non-numeric* data types.
 
-> Hence, we are going to do some examples with "_non-numerics_".
-> So that I can get an idea of how it works with the _English Alphabet_.
+> Hence, we are going to do some examples with "*non-numerics*".
+> So that I can get an idea of how it works with the *English Alphabet*.
 
 ### Example of MIN and MAX Function
 

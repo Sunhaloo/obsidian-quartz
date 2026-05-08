@@ -1,32 +1,33 @@
 ---
 id: SQL Commands - Data Manipulation Language - JOIN
-aliases: SQL Commands - DML ( JOINs )
+aliases:  SQL Commands - DML ( JOINs )
 tags:
   - SQL
   - uni
   - db
+  - uom
 author: S.Sunhaloo
 date: 2024-09-19
 status: Completed
 ---
 
 > [!INFO]
-> The Lecture Slides for this file / note is called '[[Database Systems - SQL ( DML - Part 2 ).pdf]' $\Rightarrow$ `JOIN`s starts at page 21.
+> The Lecture Slides for this file / note is called '[[Database Systems  - SQL ( DML - Part 2 ).pdf]' $\Rightarrow$ `JOIN`s starts at page 21.
 
 ## List of Contents
 
 - [[#What is a JOIN?]]
-  - [[#Types of JOIN]]
-    - [[#INNER JOIN]]
-    - [[#LEFT OUTER JOIN]]
-    - [[#RIGHT OUTER JOIN]]
-    - [[#FULL OUTER JOIN]]
+	- [[#Types of JOIN]]
+		- [[#INNER JOIN]]
+		- [[#LEFT OUTER JOIN]]
+		- [[#RIGHT OUTER JOIN]]
+		- [[#FULL OUTER JOIN]]
 
 ---
 
 # What is a JOIN?
 
-It is an operation that allows for the **combination** _row_ from 2 or more **tables**.
+It is an operation that allows for the **combination** *row* from 2 or more **tables**.
 
 # Types of JOIN
 
@@ -78,14 +79,14 @@ CR76	Kay	John	PG4	too remote
 ```
 
 > [!NOTE]
-> By **default** a `JOIN` is _inner_. To make it an _outer_ join, we need to specify the `LEFT` `RIGHT`, etc.
+> By **default** a `JOIN` is *inner*. To make it an *outer* join, we need to specify the `LEFT` `RIGHT`, etc.
 
 ---
 
 > [!TIP]
-> With **outer**, we are table to all output the rows that are **not** _matched_ in **both** tables.
+> With **outer**, we are table to all output the rows that are **not** *matched* in **both** tables.
 
-> To understand the types of _outer_ joins, we are going to use Venn Diagrams.
+> To understand the types of *outer* joins, we are going to use Venn Diagrams.
 
 ## LEFT OUTER JOIN
 
@@ -95,7 +96,7 @@ CR76	Kay	John	PG4	too remote
 
 ### Example: `LEFT JOIN`
 
-List all _branch office_ and any _properties_ that are in the same city.
+List all *branch office* and any *properties* that are in the same city.
 
 ```SQL
 SELECT Branch.branchNo, Branch.city, PropertyForRent.propertyNo, PropertyForRent.city FROM Branch
@@ -116,7 +117,7 @@ B007	Aberdeen	PA14	Aberdeen
 
 > [!INFO]
 > As you can see, we have a record / row that is `NULL`.
-> Because these _values_ does not exists in the table 'PropertyForRent'
+> Because these *values* does not exists in the table 'PropertyForRent'
 
 ## RIGHT OUTER JOIN
 
@@ -124,9 +125,9 @@ B007	Aberdeen	PA14	Aberdeen
 
 ### Example: `RIGHT JOIN`
 
-List all _branch office_ and any _properties_ that are in the same city.
+List all *branch office* and any *properties* that are in the same city.
 
-> We are "_flipping_" the condition around
+> We are "*flipping*" the condition around
 
 ```SQL
 SELECT Branch.branchNo, Branch.city, PropertyForRent.propertyNo, PropertyForRent.city FROM Branch
@@ -148,7 +149,7 @@ B005	London	PL94	London
 
 ![[Full Outer Join - Venn Diagram.png]]
 
-> This one take every value ( _from what I understand_ )
+> This one take every value ( *from what I understand* )
 
 ### Example: `FULL JOIN`
 

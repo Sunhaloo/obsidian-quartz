@@ -3,6 +3,7 @@ id: SQL Server - INSERTED and DELETED Tables
 aliases: SQL Server Triggers ( INSERTED and DELETED ) Tables
 tags:
   - uni
+  - uom
   - db
   - SQL
 module: ICDT 1202Y
@@ -14,7 +15,7 @@ status: Completed
 ## List of Contents
 
 - [[#What are these Tables?]]
-  - [[#But What's Their Purpose]]
+	- [[#But What's Their Purpose]]
 
 ---
 
@@ -42,7 +43,7 @@ But lets say that you run the command:
 INSERT INTO table_name ( field_1, field_2, field_3, ... ) VALUES ( value_1, value_2, value_3 );
 ```
 
-Well, in this will **insert** this $\uparrow$ record in the table 'table_name'... _Obviously_!
+Well, in this will **insert** this $\uparrow$ record in the table 'table_name'... *Obviously*!
 
 Now, when you do run this command... It will also **populate** the table 'INSERTED'.
 
@@ -60,9 +61,9 @@ Again, yes your record will be **deleted** from the table 'table_name'. But also
 
 #### But what if you run the 'UPDATE' Command?
 
-As you know ( _apparently I completely missed this... Thanks Rayyan_ ), an `UPDATE` statement is simply composed of and `DELETE` and `INSERT` statement
+As you know ( *apparently I completely missed this... Thanks Rayyan* ), an `UPDATE` statement is simply composed of and `DELETE` and `INSERT` statement
 
-This is why we **don't** have an 'UPDATED' table because there is _no_ need for it.
+This is why we **don't** have an 'UPDATED' table because there is *no* need for it.
 
 ```mermaid
 graph LR
@@ -70,19 +71,18 @@ graph LR
 	B[DELETE] --> C[INSERT]
 ```
 
-In the case for the `UPDATE` command, it will **first** _populate_ the 'DELETED' table and then _populate_ the 'INSERTED'.
+In the case for the `UPDATE` command, it will **first** *populate* the 'DELETED' table and then *populate* the 'INSERTED'.
 
 > [!INFO] Characteristics of These Tables
->
 > - The can **neither** be changed nor updated
 > - They can only store **1** record
->   - That is the _previous_ record
+> 	- That is the *previous* record
 
 # Quirks and Features
 
 ## Getting Values into Variables
 
-**Both** the 'INSERTED' and 'DELETED' table can have multiple rows / records when either `INSERT`, `DELETE` or `UPDATE` _event_. Hence, it is **recommended** that we _initialise_ our variables like so $\downarrow$:
+**Both** the 'INSERTED' and 'DELETED' table can have multiple rows / records when either `INSERT`, `DELETE` or `UPDATE` *event*. Hence, it is **recommended** that we *initialise* our variables like so $\downarrow$:
 
 ```SQL
 -- declaration of variables
@@ -96,7 +96,7 @@ SELECT @var_1 = value_1 FROM INSERTED;
 SELECT @var_2 = value_2 FROM DELETED;
 ```
 
-In this case, both _variables_ will have **a single** value in them.
+In this case, both *variables* will have **a single** value in them.
 
 > Similar to what we have been doing over [[SQL Procedural Programming - Embedded DML#Example 3 Use Multiple Variables IN the SELECT Command | here]!
 

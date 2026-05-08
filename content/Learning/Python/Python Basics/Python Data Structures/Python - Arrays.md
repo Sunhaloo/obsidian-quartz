@@ -25,7 +25,7 @@ status: Completed
 ---
 
 > [!INFO] Back Story
-> I have been using Python for 3 to 4 years now and I did **not** know that Python had "*arrays*" similar to something like in [[C - Static Arrays| C]]!
+> I have been using Python for 3 to 4 years now and I did **not** know that Python had "*arrays*" similar to something like in [[REDO C - Static Arrays| C]]!
 >
 > Additionally, I am also going to look at Numpy arrays which is going to be really exiting!
 >

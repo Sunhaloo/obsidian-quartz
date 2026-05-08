@@ -52,6 +52,13 @@ status: Completed
 > Therefore, we do a little **gentleman's agreement** whereby, if we write a function / method that starts with and `_` character. For example, `_some_method` or `_helper_function`...
 > 
 > We as **programmers**, are going to agree that we **won't** use this method *outside* the **current** `class`. Therefore, this is the reason as to why we "*can*" have **_"private"_ methods** in Python!
+> 
+> > [!BUG]
+> > As of today the 27/04/2026 @ 19:46; I found out that the using a **single** underscore `_` actually **conveys** the *meaning* of a **`protected`** *variable*, *function* / *method* in Python.
+> > 
+> > To **convey** the *meaning* of a **`private`**; we need to use **double** underscored `__`!
+> > 
+> > > Therefore, keep this in mind when you are reading through the content!
 
 ---
 

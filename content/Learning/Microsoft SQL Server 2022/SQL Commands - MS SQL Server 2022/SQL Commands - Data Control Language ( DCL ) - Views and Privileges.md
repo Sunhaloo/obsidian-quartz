@@ -4,6 +4,7 @@ aliases: SQL Commands - DCL ( Views - Granting and Revoking Access )
 tags:
   - SQL
   - uni
+  - uom
   - db
 module: ICDT 1202Y
 author: S.Sunhaloo
@@ -17,53 +18,50 @@ status: Completed
 ## List of Contents
 
 - [[#Views]]
-  - [[#Create Views]]
-    - [[#Explanation for WITH CHECK OPTION]]
-    - [[#Creation of Views Examples]]
-  - [[#Drop Views]]
-    - [[#Drop View Syntax]]
-    - [[#Example Dropping Bombs... I mean Views | Examples of Dropping Views]]
+	- [[#Create Views]]
+		- [[#Explanation for WITH CHECK OPTION]]
+		- [[#Creation of Views Examples]]
+	- [[#Drop Views]]
+		- [[#Drop View Syntax]]
+		- [[#Example Dropping Bombs... I mean Views | Examples of Dropping Views]]
 - [[#Login and User]]
-  - [[#Create Logins]]
-    - [[#Transact-SQL Syntax for Creating Users]]
-    - [[#Example Creating a Login]]
-    - [[#Example Deleting / Removing Login from User]]
-  - [[#Create Users]]
-    - [[#Transact-SQL Syntax for Creating Users]]
-    - [[#Example Creating a User]]
-    - [[#Example Deleting / Removing a User]]
-  - [[#Login with Created Login and User]]
+	- [[#Create Logins]]
+		- [[#Transact-SQL Syntax for Creating Users]]
+		- [[#Example Creating a Login]]
+		- [[#Example Deleting / Removing Login from User]]
+	- [[#Create Users]]
+		- [[#Transact-SQL Syntax for Creating Users]]
+		- [[#Example Creating a User]]
+		- [[#Example Deleting / Removing a User]]
+	- [[#Login with Created Login and User]]
 - [[#Privileges]]
-  - [[#GRANT Command]]
-    - [[#Example of GRANT Command]]
-  - [[#REVOKE Command]]
-    - [[#Example REVOKE Command]]
+	- [[#GRANT Command]]
+		- [[#Example of GRANT Command]]
+	- [[#REVOKE Command]]
+		- [[#Example REVOKE Command]]
 
 ---
 
 # Views
 
 > [!TIP] What is a **Base Relation**?
-> It is a named relation corresponding to an entity in a conceptual schema ( _see below $\downarrow$_ ), whose tuples / rows are **[[ANSI - SPARC Model#Internal Level / Physical Level | physically]** stored in the database.
->
+> It is a named relation corresponding to an entity in a conceptual schema ( *see below $\downarrow$* ), whose tuples / rows are **[[ANSI - SPARC Model#Internal Level / Physical Level | physically]** stored in the database.
 > > [!INFO]
 > > If you want, you can check out:
-> >
 > > - [[Entity Relationship Diagram ( ERD ) and Relationships]]
+>
 
 > [!TIP] What is a **View**?
->
-> - Dynamic result of 1 or more **relational** operations operating on **base relations** to produce another _virtual_ relation.
+> - Dynamic result of 1 or more **relational** operations operating on **base relations** to produce another *virtual* relation.
 > - The relation is **virtual**
->   - Does **not** really exists; but **produced** upon request
-> - **Contents** of a _view_ are defined as query on 1 ore more base relations
-> - **Dynamic** $\Rightarrow$ Changes made to **base relation** that affect _view attributes_ are **immediately** reflected in the view.
+> 	- Does **not** really exists; but **produced** upon request
+> - **Contents** of a *view* are defined as query on 1 ore more base relations
+> - **Dynamic** $\Rightarrow$ Changes made to **base relation** that affect *view attributes* are **immediately** reflected in the view.
 
 > [!TIP] Purpose of **Views**
->
 > 1. Hide the complexity of database from certain users
 > 2. Users have **personalised** view
->    - Different people can have different view for the same data
+> 	- Different people can have different view for the same data
 > 3. Simplification of complex operations on base relations
 
 ## Create Views
@@ -79,9 +77,8 @@ status: Completed
 >    [WITH [CASCADED | LOCAL] CHECK OPTION]
 > ```
 >
-> To be honest, I don't really understand _format_ ( _for the syntax_ ).
+> To be honest, I don't really understand *format* ( *for the syntax* ).
 > Hence, I asked [ChatGPT](https://chat.openai.com) to generate a better one this is what I got.
->
 > ```SQL
 > CREATE VIEW ViewName AS
 > SELECT column1, column2, ...
@@ -93,7 +90,7 @@ status: Completed
 
 ### Explanation for WITH CHECK OPTION
 
-Given that you are `INSERT`ing data into the `VIEW` ( _not the table check the example below $\downarrow$_ ); the `WITH CHECK OPTION` ensures that the _inserted_ row satisfies the condition **view**'s `WHERE` clause.
+Given that you are `INSERT`ing data into the `VIEW` ( *not the table check the example below $\downarrow$* ); the `WITH CHECK OPTION` ensures that the *inserted* row satisfies the condition **view**'s `WHERE` clause.
 
 This `WHERE` clause might look like this:
 
@@ -106,9 +103,9 @@ WHERE First_Name LIKE 'S&';
 #### Why Use It?
 
 - Data Integrity
-  - Ensures that only **valid** data ( _defined by the view_ ) can be _inserted_ / _updated_
+	- Ensures that only **valid** data ( *defined by the view* ) can be *inserted* / *updated*
 - Security and Control
-  - Prevention of accidental _insertion_ / _updates_ that might break business logic / view
+	- Prevention of accidental *insertion* / *updates* that might break business logic / view
 
 #### Example
 
@@ -137,11 +134,11 @@ WITH CHECK OPTION;
 ### Creation of Views Examples
 
 > [!NOTE]
-> Please refer to page **11** and **13** for the **difference** between '_Horizontal View_' and '_Vertical View_'!
+> Please refer to page **11** and **13** for the **difference** between '*Horizontal View*' and '*Vertical View*'!
 
 #### Example 1: Simple Staff View
 
-This _personalised_ view will display simple information about a staff like: First Name, Last Name and Staff Number.
+This *personalised* view will display simple information about a staff like: First Name, Last Name and Staff Number.
 
 ```SQL
 -- creating and giving the view a name
@@ -168,7 +165,7 @@ SELECT staffNo AS Staff_Number, lname AS Last_Name, fname AS First_Name FROM Sta
 
 > [!INFO]- Using the View
 > We have only **created** the view only. Let's try to actually use it!
-> To use the view, we simply "_call_" with the `SELECT` command like we are calling some columns from a table.
+> To use the view, we simply "*call*" with the `SELECT` command like we are calling some columns from a table.
 >
 > ```SQL
 > SELECT * FROM Simple_Personalised_View;
@@ -206,15 +203,15 @@ SELECT staffNo AS Staff_Number, lname AS Last_Name, fname AS First_Name FROM Sta
 > SL41	Lee	Julie
 > ```
 >
-> Let's try creating a good ( _example_ ) view!
+> Let's try creating a good ( *example* ) view!
 
 #### Example 2: Advanced Syntax ( Different Way of Writing It )
 
 > [!NOTE]
-> This example should not have been called "_Advanced Syntax ( Different Way of Writing It )_"; It's actually called "_Grouped Views_".
+> This example should not have been called "*Advanced Syntax ( Different Way of Writing It )*"; It's actually called "*Grouped Views*".
 > It is found in page 15 in the Lecture Slide.
 >
-> > She ( _the lecturer_ ) is so smart! ( _compared to others, cough cough GOPEE_ )
+> > She ( *the lecturer* ) is so smart! ( *compared to others, cough cough GOPEE* )
 
 ```SQL
 -- creating, giving name, specifying column names
@@ -286,10 +283,10 @@ Staff3	2024-08-28 06:00:53.883	2024-08-28 06:00:53.883	0
 
 > [!INFO]
 > I did not mention this. But now I remember.
-> For this file / note; I **not** used the _usual_ database 'Dreamhome'.
-> I used a 'Test' database, where I do all my _tests_ because I can then do shitty shits!
+> For this file / note; I **not** used the *usual* database 'Dreamhome'.
+> I used a 'Test' database, where I do all my *tests* because I can then do shitty shits!
 
-Hence, we run the _these_ command below $\downarrow$:
+Hence, we run the *these* command below $\downarrow$:
 
 ```csv
 DROP VIEW Simple_Personalised_View;
@@ -310,8 +307,8 @@ DROP VIEW Staff3;
 >
 > Nevertheless, I did ask ChatGPT this question and it gave me this code block.
 >
-> > "_[I have not idea what am doing / reading](https://www.youtube.com/watch?v=rR4n-0KYeKQ&t=20s)_"
->
+> > "*[I have not idea what am doing / reading](https://www.youtube.com/watch?v=rR4n-0KYeKQ&t=20s)*"
+> 
 > ```SQL
 > DECLARE @sql NVARCHAR(MAX) = '';
 >
@@ -331,20 +328,18 @@ DROP VIEW Staff3;
 > EXEC sp_executesql @sql;
 > ```
 
-> [!TIP] We should have _nothing_ in the 'sys.views' table
+> [!TIP] We should have *nothing* in the 'sys.views' table
 
 ---
 
 # Login and User
 
 > [!NOTE]
->
 > - `LOGIN` grants access to the SQL **server**
-> - `USER` grants a _login_ access to the **database**
+> - `USER` grants a *login* access to the **database**
 
 > [!INFO] Resources
 > Websites:
->
 > - https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/create-a-database-user?view=sql-server-ver16
 
 ## Create Logins
@@ -371,8 +366,8 @@ GO
 > With the SQL statement below $\downarrow$; we are able to list the `LOGIN` found in the **Server**
 >
 > > Yes, **Server**!
-> > `LOGIN` are tied to **Server** ( _at the Server Level_ )
-> > `USER` are tied to **Database** ( _at the Database Level_ )
+> > `LOGIN` are tied to **Server** ( *at the Server Level* )
+> > `USER` are tied to **Database** ( *at the Database Level* )
 >
 > ```SQL
 > SELECT name, type_desc, create_date
@@ -417,14 +412,14 @@ DROP LOGIN testing_login;
 
 #### SQL User with Login
 
-Someone like a [[Database Administrator] is one who is an '_SQL User with Login_'.
+Someone like a [[Database Administrator] is one who is an '*SQL User with Login*'.
 This is because they need access **many** / **all** of the database on the instance of SQL Server
 
 #### SQL User with Password
 
-This is like us people ( _i.e students_ ) who log into the [[University Data View ( L1S1 )| University]]'s SQL Server.
+This is like us people ( *i.e students* ) who log into the [[University of Mauritius Data View ( L1S1 )| University]'s SQL Server.
 
-We **don't** need access to all of the database ( _we actually only have access to 1 database_ )
+We **don't** need access to all of the database ( *we actually only have access to 1 database* )
 
 In addition, if a person **cannot** authenticate with the Windows Authentication; he / she can use this method to log into the SQL Server.
 
@@ -451,7 +446,7 @@ WITH DEFAULT_SCHEMA = dbo;
 ```
 
 > [!TIP]- Verification of Creation of `USER`
-> Similar to verification of `LOGIN`; we are going user another _table_ to view the current _users_ in the **current** database
+> Similar to verification of `LOGIN`; we are going user another *table* to view the current *users* in the **current** database
 >
 > ```SQL
 > SELECT name, type_desc, create_date, modify_date
@@ -494,8 +489,8 @@ DROP USER testing_user
 
 ## Login with Created Login and User
 
-Now, we have created our `LOGIN` and `USER`. What we are going to do now it _suck it_... No, not really.
-To be able to login use the newly created _credentials_ with [[Microsoft SQL Server 2022 Introduction#Opening Management Studio | SQL Server Management Studio].
+Now, we have created our `LOGIN` and `USER`. What we are going to do now it *suck it*... No, not really.
+To be able to login use the newly created *credentials* with [[Microsoft SQL Server 2022 Introduction#Opening Management Studio | SQL Server Management Studio].
 
 ### Steps
 
@@ -507,9 +502,9 @@ To be able to login use the newly created _credentials_ with [[Microsoft SQL Ser
 
 ## GRANT Command
 
-When you use the `GRANT` command, you are granting _permissions_ to the **database [[#Create Users | user]**.
+When you use the `GRANT` command, you are granting *permissions* to the **database [[#Create Users | user]**.
 
-> This _database user_ is mapped onto his / her [[#Create Logins | login].
+> This *database user* is mapped onto his / her [[#Create Logins | login].
 
 ### `GRANT` Syntax Template
 
@@ -523,13 +518,13 @@ WITH GRANT OPTION
 Whereby:
 
 - `permission_list` are commands like:
-  - `SELECT`, `INSERT`, `UDPATE`, `DELETE`
+	- `SELECT`, `INSERT`, `UDPATE`, `DELETE`
 - `securable_object` are basically database objects like:
-  - `TABLE`, `VIEW`, `PROCEDURE`
+	- `TABLE`, `VIEW`, `PROCEDURE`
 - `principal` well, its the:
-  - `USER`, `ROLE`, `GROUP`
+	- `USER`, `ROLE`, `GROUP`
 - `WITH GRANT OPTION`
-  - This allows that user `principal` to be able to "_hand-out_" **permissions**
+	- This allows that user `principal` to be able to "*hand-out*" **permissions**
 
 ### Example of GRANT Command
 
@@ -545,30 +540,30 @@ Whereby:
 > It gave me this answer :LiSkull:
 >
 > ```SQL
-> SELECT
+> SELECT 
 >    prin.name AS PrincipalName,
 >    perm.permission_name AS Permission,
 >    perm.state_desc AS State,
 >    obj.name AS ObjectName,
 >    perm.class_desc AS ObjectType
-> FROM
+> FROM 
 >    sys.database_permissions AS perm
-> JOIN
+> JOIN 
 >    sys.database_principals AS prin
 >    ON perm.grantee_principal_id = prin.principal_id
-> LEFT JOIN
+> LEFT JOIN 
 >    sys.objects AS obj
 >    ON perm.major_id = obj.object_id
 > -- I added this `WHERE` clause below
 > WHERE prin.name = 'testing_user';
 > ```
 
-> [!TIP] Check User `testing_user` current _things_
+> [!TIP] Check User `testing_user` current *things*
 > Running the code block above will give us $\downarrow$:
 >
 > ```csv
 > PrincipalName	Permission	State	ObjectName	ObjectType
-> testing_user	CONNECT	GRANT	NULL	DATABASE
+testing_user	CONNECT	GRANT	NULL	DATABASE
 > ```
 
 Now, let's go ahead an give the beloved `testing_user` all the privileges.
@@ -594,18 +589,19 @@ WITH GRANT OPTION;
 > ```
 >
 > > Hence, success $\checkmark$
+>
 
 > [!BUG]
 > So the next step is to check whether we actually have **permissions** like `SELECT`, `UPDATE`, etc.
-> But because Microsoft if Micro-soft ( _like Mr Dick is soft_ ); Apparently when I try to login with the like I said with the above [[#Login with Created Login and User | step]. I get this fucking error message:
+> But because Microsoft if Micro-soft ( *like Mr Dick is soft* ); Apparently when I try to login with the like I said with the above [[#Login with Created Login and User | step]. I get this fucking error message:
 >
 > ```console
 > A connection was successfully established with the server, but then an error occurred during the login process. (provider: SSL Provider, error: 0 - The certificate chain was issued by an authority that is not trusted.) (Microsoft SQL Server, Error: -2146893019)
 > ```
->
-> This means that; Yes, it did recognise my username and password. But I think the issue comes in the form of _Encryption_
+> This means that; Yes, it did recognise my username and password. But I think the issue comes in the form of *Encryption*
 >
 > > Well, that the heck do I know... [Developers](https://www.youtube.com/watch?v=Vhh_GeBPOhs)
+>
 
 #### Example: `GRANT` Some Privileges to a User
 
@@ -613,18 +609,18 @@ WITH GRANT OPTION;
 > Running the SQL Code block provided by ChatGPT
 >
 > ```SQL
-> SELECT
+> SELECT 
 >    prin.name AS PrincipalName,
 >    perm.permission_name AS Permission,
 >    perm.state_desc AS State,
 >    obj.name AS ObjectName,
 >    perm.class_desc AS ObjectType
-> FROM
+> FROM 
 >    sys.database_permissions AS perm
-> JOIN
+> JOIN 
 >    sys.database_principals AS prin
 >    ON perm.grantee_principal_id = prin.principal_id
-> LEFT JOIN
+> LEFT JOIN 
 >    sys.objects AS obj
 >    ON perm.major_id = obj.object_id
 > -- I added this `WHERE` clause below
@@ -641,7 +637,7 @@ WITH GRANT OPTION;
 
 ## REVOKE Command
 
-Well, this is the opposite of the `GRANT` command. Instead of _giving-out_ permissions to a user... We are going to remove his / her **rights**. Because we are powerful people and we do whatever the fuck we want.
+Well, this is the opposite of the `GRANT` command. Instead of *giving-out* permissions to a user... We are going to remove his / her **rights**. Because we are powerful people and we do whatever the fuck we want.
 
 ### `REVOKE` Syntax Template
 
@@ -663,7 +659,7 @@ Basically, you know how we have the [[#`GRANT` Syntax Template | option] to gran
 
 Hence, we use the `CASCADE`, for example on `user_1`; which has granted permissions to `user_2` and in addition, `user_2` has granted some other permission to `user_3`.
 
-Therefore, **ALL** the people that has _received_ privileges from `user_1`.
+Therefore, **ALL** the people that has *received* privileges from `user_1`.
 
 > I know that this was a shit explanation... I suggest you to look and read the Lecture Slides on this!
 
@@ -677,18 +673,18 @@ First up, let's see what privileges / permissions our user `testing_user` curren
 > Run the following SQL statement...
 >
 > ```SQL
-> SELECT
+> SELECT 
 >    prin.name AS PrincipalName,
 >    perm.permission_name AS Permission,
 >    perm.state_desc AS State,
 >    obj.name AS ObjectName,
 >    perm.class_desc AS ObjectType
-> FROM
+> FROM 
 >    sys.database_permissions AS perm
-> JOIN
+> JOIN 
 >    sys.database_principals AS prin
 >    ON perm.grantee_principal_id = prin.principal_id
-> LEFT JOIN
+> LEFT JOIN 
 >    sys.objects AS obj
 >    ON perm.major_id = obj.object_id
 > -- I added this `WHERE` clause below
@@ -718,7 +714,7 @@ FROM testing_user;
 ```
 
 > [!BUG] Bug Wait!!!
-> When I try to run the above $\uparrow$ code; I got this _simple_ error $\downarrow$:
+> When I try to run the above $\uparrow$ code; I got this *simple* error $\downarrow$:
 >
 > ```console
 > To revoke or deny grantable privileges, specify the CASCADE option.
@@ -752,13 +748,14 @@ CASCADE;
 > ```
 
 > [!WARNING] Friendly Warning
-> The reason why we have to include the `CASCADE` [[#Explanation on `CASCADE` | option] is because when we _granted_ privileges / permissions to the user `testing_user`; we used the `WITH GRANT OPTION`... Well, "_option_".
+> The reason why we have to include the `CASCADE` [[#Explanation on `CASCADE` | option] is because when we *granted* privileges / permissions to the user `testing_user`; we used the `WITH GRANT OPTION`... Well, "*option*".
 >
-> And even though that user `testing_user` did **not** "_hand-out_" any permissions to any other user. We still need to include that `CASCADE` option.
+> And even though that user `testing_user` did **not** "*hand-out*" any permissions to any other user. We still need to include that `CASCADE` option.
 > Just because we have used `WITH GRANT OPTION` on that specific user.
 >
 > > Well my guess is now that if we did not have that `WITH GRANT OPTION`.
-> > We would not have be forced to use the `CASCADE` option when _revoking_!
+> > We would not have be forced to use the `CASCADE` option when *revoking*!
+>
 
 #### Example: Revoking ALL Privilege / Permission from User
 
@@ -797,7 +794,7 @@ CASCADE;
 > This means that we need to **explicitly** specify the commands that we want to revoke; like specify `SELECT`, `INSERT` and others.
 
 > [!TIP]- Verification of `REVOKE ALL`
-> Again, running the _same_ SQL statement from above $\uparrow$, we are going to get this:
+> Again, running the *same* SQL statement from above $\uparrow$, we are going to get this:
 >
 > ```csv
 > PrincipalName	Permission	State	ObjectName	ObjectType

@@ -53,7 +53,7 @@ SORT file.name ASC
 
 ### Java Data Structures Folder
 
-- [[Java - Primitive Arrays]]
+- [[REDO Java - Primitive Arrays]]
 
 #### Separated Object Oriented Programming Folder
 

@@ -125,8 +125,8 @@ def bubble_sort_optimised(arr: list):
 
 > [!NOTE] Time Complexity = O(n^2) [ $O(n^{2})$ ]
 > - The **overall** *running* time complexity for this function is going to be O(n^2) [ $O(n^{2})$ ]
-> - Best Case: O(n) — occurs when the list is already sorted ( `swapped` flag triggers early exit )
-> - Worst Case: O(n^2) [ $O(n^{2})$ ] — occurs when the list is sorted in reverse order
+> - Best Case: O(n) - occurs when the list is already sorted ( `swapped` flag triggers early exit )
+> - Worst Case: O(n^2) [ $O(n^{2})$ ] - occurs when the list is sorted in reverse order
 >
 > > [!INFO] Recurrence Equation: T(n) = T(n - 1) + n
 > > - The outer `for` loop iterates `n - 1` times

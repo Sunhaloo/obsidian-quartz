@@ -6,29 +6,30 @@ tags:
   - SQL
   - uni
   - db
+  - uom
 author: S.Sunhaloo
 date: "2024-08-31"
 status: Completed
 ---
 
 > [!INFO]
-> The Lecture Notes / Slides are found in "[[Database Systems - SQL ( DML - Part 1 ).pdf]".
-> The _sub-heading_ for the `DELETE` statement starts at page 15.
+> The Lecture Notes / Slides are found in "[[Database Systems  - SQL ( DML - Part 1 ).pdf]".
+> The *sub-heading* for the `DELETE` statement starts at page 15.
 
 ## List of Contents
 
 - [[#The Delete Command]]
-  - [[#General Template for DELETE Command]]
-    - [[#Example]]
-      - [[#DELETE A Single Record]]
-      - [[#Delete Everything in a Table]]
+	- [[#General Template for DELETE Command]]
+		- [[#Example]]
+			- [[#DELETE A Single Record]]
+			- [[#Delete Everything in a Table]]
 
 ---
 
 > [!WARNING]
 > Similar to [[SQL Commands - Data Manipulation Language - UPDATE | `UPDATE`]  v/s [[SQL Commands - Data Definition Language ( DDL )#Alter Command| `ALTER`]]
 >
-> The `DELETE` command will delete / remove **values** that is found _inside_ of a table and **not** `DROP` the actual table.
+> The `DELETE` command will delete / remove **values** that is found *inside* of a table and **not** `DROP` the actual table.
 > Notes for `DROP` command can be found [[SQL Commands - Data Definition Language ( DDL )#Drop Columns WITH Constraints| here]]
 
 # The Delete Command
@@ -75,7 +76,7 @@ WHERE staffNo = 'SG5';
 ```
 
 > [!TIP]- Verification of Removal of Record
-> To check if the record we wanted gone... is _gone_. We can use the following statements:
+> To check if the record we wanted gone... is *gone*. We can use the following statements:
 >
 > ```SQL
 > -- first command
@@ -100,7 +101,7 @@ WHERE staffNo = 'SG5';
 
 ### Delete Everything in a Table
 
-Now, instead of deleting a **single** record; we are now going to remove **all** _values_ from the table.
+Now, instead of deleting a **single** record; we are now going to remove **all** *values* from the table.
 
 This is actually so simple to do that it is almost dangerous to do!
 
@@ -122,9 +123,10 @@ DELETE StaffPropCount
 > staffNo	fname	lname	propCount
 > ```
 
+
 > [!WARNING]
-> Again, this will <span style="color: red;"> <strong> not</strong> </span> delete the _table_.
-> _Again_ and fucking _again_, if you want to delete the table; use the `DROP` command.
+> Again, this will <span style="color: red;"> <strong> not</strong> </span> delete the *table*.
+> *Again* and fucking *again*, if you want to delete the table; use the `DROP` command.
 >
 > ```SQL
 > DROP TABLE StaffPropCount;

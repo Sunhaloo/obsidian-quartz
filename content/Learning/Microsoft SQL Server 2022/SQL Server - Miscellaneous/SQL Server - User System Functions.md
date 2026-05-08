@@ -3,6 +3,7 @@ id: SQL Server - User Functions
 aliases: SQL Procedural Programming - User Functions in SQl Server
 tags:
   - uni
+  - uom
   - db
   - SQL
 module: ICDT 1202Y
@@ -14,16 +15,16 @@ status: Completed
 ## List of Contents
 
 - [[#User Functions]]
-  - [[#Current Users]]
-  - [[#System Users]]
-  - [[#User Name Function]]
+	- [[#Current Users]]
+	- [[#System Users]]
+	- [[#User Name Function]]
 
 ---
 
 > [!INFO]
-> This note / file will only focus on _user_ related functions. I will not really be explaining most things as these functions may only return a single value and are really simple to understand.
+> This note / file will only focus on *user* related functions. I will not really be explaining most things as these functions may only return a single value and are really simple to understand.
 >
-> > I needed to make this note because I did use a _user-related_ function in '[[Database Systems - Labsheet 3 ( L1S2 )#Question 5 | Database Systems - Labsheet 3 ( L1S2 )]'
+> > I needed to make this note because I did use a *user-related* function in '[[Database Systems - Labsheet 3 ( L1S2 )#Question 5 | Database Systems - Labsheet 3 ( L1S2 )]'
 
 ---
 
@@ -32,7 +33,6 @@ status: Completed
 ## Current Users
 
 > [!INFO] Resources
->
 > - https://learn.microsoft.com/en-us/sql/t-sql/functions/current-user-transact-sql?view=sql-server-ver16
 
 Its very simple to use this function simply do $\downarrow$:
@@ -51,9 +51,9 @@ dbo
 
 ### Purpose
 
-Well, the main purpose of the this is to be able to get the **Current User** ( _duh_ ). But we can use it to _audit_ / monitor people doing database things.
+Well, the main purpose of the this is to be able to get the **Current User** ( *duh* ). But we can use it to *audit* / monitor people doing database things.
 
-Lets' say that we have an attribute `current_user` in our table 'table_name'. Now **many** users have access to this table and they can all `INSERT` _records_ into that table.
+Lets' say that we have an attribute `current_user` in our table 'table_name'. Now **many** users have access to this table and they can all `INSERT` *records* into that table.
 
 Say that we needed to get the records that where inserted by a specific user. Therefore we could run something like this:
 
@@ -77,7 +77,7 @@ SELECT * FROM Branch
 WHERE CURRENT_USER = 'dbo';
 ```
 
-Here, we should get some type of output ( _I am also running this for the first time_! ):
+Here, we should get some type of output ( *I am also running this for the first time*! ):
 
 ```console
 branchNo	street	city	postcode
@@ -88,17 +88,19 @@ B005	22 Deer Rd	London	SW1 4EH
 B007	16 Argyll St	Aberdeen	AB2 3SU
 ```
 
-> Well, these are all the _records_ **inserted** by the user `dbo` ( _which is me_ )!
+
+> Well, these are all the *records* **inserted** by the user `dbo` ( *which is me* )!
 
 ---
 
 > [!INFO] I think you get the point!
-> Therefore, I am just going write '_code blocks_'; maybe with a little explanation of each of them... _Keyword 'maybe'_.
+> Therefore, I am just going write '*code blocks*'; maybe with a little explanation of each of them... *Keyword 'maybe'*.
 >
 > > Nevertheless, I want to move fast with this!
+>
 
 > [!WARNING]
-> All the "_commands_" / statements below were ran on the `master` database!
+> All the "*commands*" / statements below were ran on the `master` database!
 
 ## System Users
 
@@ -117,7 +119,7 @@ Current System User / Login: 'DESKTOP-QFST42T\username'
 
 > [!SUCCESS] And Yes!!!
 >
-> If you go into the Windows Terminal ( _'Powershell' obviously_ ), then type the following:
+> If you go into the Windows Terminal ( *'Powershell' obviously* ), then type the following:
 >
 > ```powershell
 > # basically the same command found on Linux / Unix systems
@@ -130,12 +132,12 @@ Current System User / Login: 'DESKTOP-QFST42T\username'
 > desktop-qfst42t\username
 > ```
 >
-> > Which is basically the _same_ thing!
+> > Which is basically the *same* thing!
+>
 
 ## Session Users
 
 > [!INFO] Resource
->
 > - https://learn.microsoft.com/en-us/sql/t-sql/functions/session-user-transact-sql?view=sql-server-ver16
 
 Its is similar to '[[#Current Users]' but has some minor differences in some cases.
@@ -158,7 +160,6 @@ Current Session User / Login: 'dbo'
 > Yes! Its a **function**!
 
 > [!INFO] Resource
->
 > - https://learn.microsoft.com/en-us/sql/t-sql/functions/user-name-transact-sql?view=sql-server-ver16
 
 - SQL Statement:
@@ -178,7 +179,7 @@ User Name: 'dbo'
 
 Let us first check what we have in the 'sys.database_principles' table!
 
-- SQL Statement ( _output of principal database table_ ):
+- SQL Statement ( *output of principal database table* ):
 
 ```SQL
 -- display the name and 'id' of database principals
@@ -209,7 +210,7 @@ db_denydatareader	16392
 db_denydatawriter	16393
 ```
 
-- SQL Statement ( _passing the `ID` parameter_ ):
+- SQL Statement ( *passing the `ID` parameter* ):
 
 ```SQL
 -- displays the 'user name' depending on 'ID'
@@ -225,9 +226,10 @@ User Name: 'hrdm'
 ---
 
 > [!INFO] There Are Many More!!!
-> Because there are many many more _functions_ and _system variables_... I suggest you to search for them by yourself!
+> Because there are many many more *functions* and *system variables*... I suggest you to search for them by yourself!
 >
 > > Because I am a lazy motherfucker!
+>
 
 ---
 

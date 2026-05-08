@@ -6,6 +6,7 @@ tags:
   - SQL
   - db
   - uni
+  - uom
 author: S.Sunhaloo
 date: 2023-08-21
 ---
@@ -25,6 +26,7 @@ TABLE status, date
 FROM "Learning/Microsoft SQL Server 2022"
 WHERE status = "HOLD"
 ```
+
 
 # Microsoft SQL Server 2022 Folder
 
@@ -76,16 +78,16 @@ SORT file.ctime ASC
 - [[SQL Commands - Data Definition Language - Constraints]]
 - [[SQL Commands - Data Manipulation Language - INSERT]]
 - [[SQL Commands - Data Manipulation Language - SELECT]]
-  - [[SQL Commands - Data Manipulation Language - Pattern Matching]]
-  - [[SQL Commands - Data Manipulation Language - Aggregate Functions]]
-  - [[SQL Commands - Data Manipulation Language - GROUP BY and HAVING]]
-  - [[SQL Commands - Data Manipulation Language - Sub Queries]]
-    - [[SQL Commands - Combination of 2 or More Queries]]
-  - [[SQL Commands - Data Manipulation Language - JOIN]]
+	- [[SQL Commands - Data Manipulation Language - Pattern Matching]]
+	- [[SQL Commands - Data Manipulation Language - Aggregate Functions]]
+	- [[SQL Commands - Data Manipulation Language - GROUP BY and HAVING]]
+	- [[SQL Commands - Data Manipulation Language - Sub Queries]]
+		- [[SQL Commands - Combination of 2 or More Queries]]
+	- [[SQL Commands - Data Manipulation Language - JOIN]]
 - [[SQL Commands - Data Manipulation Language - UPDATE]]
 - [[SQL Commands - Data Manipulation Language - DELETE]]
 - [[SQL Commands - Data Control Language ( DCL ) - Views and Privileges]]
-  - [[SQL Commands - Database Backup and Recovery]]
+	- [[SQL Commands - Database Backup and Recovery]]
 
 ## PL/SQL Related Files
 

@@ -6,6 +6,7 @@ tags:
   - SQL
   - uni
   - db
+  - uom
 author: S.Sunhaloo
 date: "2024-09-02"
 status: Completed
@@ -14,31 +15,30 @@ status: Completed
 > [!INFO]
 > This is actually part of the file / note [[SQL Commands - Data Manipulation Language - SELECT]]
 > But I did not really understood it well when we did it in Lecture.
-> Hence, I will be making a separate note and getting good that this "_pattern matching_" thing.
-> Again the notes for this is found on; Page 35 in the "[[Database Systems - SQL ( DML - Part 1 ).pdf]".
+> Hence, I will be making a separate note and getting good that this "*pattern matching*" thing.
+> Again the notes for this is found on; Page 35 in the "[[Database Systems  - SQL ( DML - Part 1 ).pdf]".
 
 ## List of Contents
 
 - [[#What is Pattern Matching?]]
 - [[#Pattern Matching in SQL]]
-  - [[#Pattern Matching Symbols]]
+	- [[#Pattern Matching Symbols]]
 - [[#Scenarios]]
-  - [[#Scenario 1 With the '%' Symbol]]
-  - [[#Scenario 2 With the '_' Symbol]]
-  - [[#Scenario 3 Escape Character]]
+	- [[#Scenario 1 With the '%' Symbol]]
+	- [[#Scenario 2 With the '_' Symbol]]
+	- [[#Scenario 3 Escape Character]]
 
 ---
 
 # What is Pattern Matching?
 
 > [!TIP]- Resources
->
 > - Websites:
->   - https://en.wikipedia.org/wiki/Pattern_matching
+> 	- https://en.wikipedia.org/wiki/Pattern_matching
 
 > [!NOTE]
 > I will not get into the details to much.
-> But just know that this is used to match certain _patterns_ like "_strings_" or _formally_ known as [[SQL Commands - Data Manipulation Language - SELECT#Non-Numeric Literals | Non-Numeric Literals]]
+> But just know that this is used to match certain *patterns* like "*strings*" or *formally* known as [[SQL Commands - Data Manipulation Language - SELECT#Non-Numeric Literals | Non-Numeric Literals]]
 
 Basically what if we have some data that look like this:
 
@@ -54,13 +54,13 @@ Road America, Wisconsin, United States
 
 What if we wanted to find all the race tracks that are found in 'Europe'?
 
-This is where **pattern matching** comes it because in this _sea of strings_; we can specify to find where we have 'Europe' in that _sea of strings_.
+This is where **pattern matching** comes it because in this *sea of strings*; we can specify to find where we have 'Europe' in that *sea of strings*.
 
 # Pattern Matching in SQL
 
 ## Pattern Matching Symbols
 
-In [[Microsoft SQL Server 2022 Data View | SQL]; we have 2 symbols ( _or ways_ ) that we can pattern match.
+In [[Microsoft SQL Server 2022 Data View | SQL]; we have 2 symbols ( *or ways* ) that we can pattern match.
 
 > [!TIP] The `%` Symbol
 > This means that we can search for a **sequence of 0 or more characters**.
@@ -92,16 +92,16 @@ CONSTRAINT start_with_PK_tblStaff CHECK ( staffNo LIKE 'S%' )
 > [!NOTE] Therefore, what does the `B%` or `S%` actually means?
 > It means that when we are entering the data for `branchNo` and `staffNo`; they should look something like this:
 >
-> > We did `branchNo CHAR(4)` and `staffNo CHAR(4)`; hence we can only add _total length_ of 4 characters
+> > We did `branchNo CHAR(4)` and `staffNo CHAR(4)`; hence we can only add *total length* of 4 characters
 >
 > - Branch Table `branchNo` data:
->   - `B001`
->   - `B123`
->   - `B0A7`
+> 	- `B001`
+> 	- `B123`
+> 	- `B0A7`
 > - Staff Table `staffNo` data:
->   - `SL34`
->   - `S509`
->   - `S1L2`
+> 	- `SL34`
+> 	- `S509`
+> 	- `S1L2`
 
 As you can see all the **values** of `branchNo` and `staffNo`; all starts with `B` and `S` respectively.
 
@@ -109,8 +109,8 @@ As you can see all the **values** of `branchNo` and `staffNo`; all starts with `
 > That something like `B%` means that:
 >
 > - The **first** character must be `B`
->   - But the _rest_ of the string can be **anything**
->   - But remember if we are talking about insertion of values ( _which we are not here_ ) then we would need to pay attention to the _length_ of characters we can add
+> 	- But the *rest* of the string can be **anything**
+> 	- But remember if we are talking about insertion of values ( *which we are not here* ) then we would need to pay attention to the *length* of characters we can add
 
 > [!TIP] Last Character
 > Again, we know that `%` means any sequence of 0 or more characters.
@@ -123,10 +123,10 @@ As you can see all the **values** of `branchNo` and `staffNo`; all starts with `
 > What does `%e` could possibly mean?
 > From what we know we can have 0 or many characters with the `%` sign and is before the character `e`.
 >
-> $\Rightarrow$ Hence, this means that we can have **any** sequence of characters of _length_ of at **least** 1; with the **last** character as `e`!
+> $\Rightarrow$ Hence, this means that we can have **any** sequence of characters of *length* of at **least** 1; with the **last** character as `e`!
 
 > [!TIP] Before and After
-> From the above $\uparrow$ '_tip_', we can conclude that `LIKE %e` means sequence of character is on the _left_ and the **last** character is `e`.
+> From the above $\uparrow$ '*tip*', we can conclude that `LIKE %e` means sequence of character is on the *left* and the **last** character is `e`.
 > But what about...
 >
 > ```SQL
@@ -148,8 +148,8 @@ FROM PrivateOwner
 WHERE address LIKE '%Glasgow%';
 ```
 
-> This again, should search for the 'Glasgow' in the _sea of strings_
-> Or as the Lecturer said: "_sequence of characters, of length containing `Glasgow`_"
+> This again, should search for the 'Glasgow' in the *sea of strings*
+> Or as the Lecturer said: "*sequence of characters, of length containing `Glasgow`*"
 
 > [!TIP] Output of Scenario 1 - Example
 > This should be the output after running the statement above $\uparrow$:
@@ -165,7 +165,7 @@ WHERE address LIKE '%Glasgow%';
 
 As we have said from the [[#Pattern Matching Symbols | beginning], the `_` character means we can search of any **single** character.
 
-It's **not** like `%` where it can _be_ a sequence of 0 or more characters.
+It's **not** like `%` where it can *be* a sequence of 0 or more characters.
 
 Instead, it like you have a word with 4 characters and you are search for that for 4 characters.
 
@@ -215,6 +215,7 @@ WHERE branchNo LIKE '___7';
 > ```
 >
 > > [!SUCCESS] Fucking Success!!!
+>
 
 ##### Example 2: 'PrivateOwner' Table and `address`
 
@@ -227,10 +228,9 @@ WHERE telNo LIKE '0141-___';
 ```
 
 > [!BUG] Shit!
->
 > > [!TIP] Output of Scenario 2 - Example 2
 > > This should return 3 records; I guess
-> >
+> > 
 > > ```csv
 > > ownerNo	fname	lname	address	telNo
 > > ```
@@ -247,13 +247,14 @@ WHERE telNo LIKE '0141-___';
 >
 > > [!SUCCESS]
 > > This is correct! 出力を見てみましょう $\downarrow$
-> >
+> > 
 > > ```csv
 > > ownerNo,fname,lname,address,telNo
 > > CO40,Tina,Murphy,"63 Well St, Glasgow G42",0141-943-1728
 > > CO87,Carol,Farrel,"6 Achray St, Glasgow G32 9DX",0141-357-7419
 > > CO93,Tony,Shaw,"12 Park Pl, Glasgow G4 0QR",0141-225-7025
 > > ```
+>
 
 From this mistake above $\uparrow$ that I made, I can now understand why I could not do it in the Lecture / Class and here also?
 Because I am fucking dumb!
@@ -268,7 +269,6 @@ WHERE city LIKE 'L_____';
 ```
 
 > [!TIP] Output of Scenario 2 - Example 3
->
 > > I fucking got it!
 >
 > This will be and output after running the above $\uparrow$ statement:
@@ -281,7 +281,7 @@ WHERE city LIKE 'L_____';
 
 ### Scenario 3: Escape Character
 
-Now that if we wanted to search for something like `15%` ( _again I am taking example from the Lecture Slides_ ).
+Now that if we wanted to search for something like `15%` ( *again I am taking example from the Lecture Slides* ).
 
 Like it will go ahead and search for something like `15sfdg` for example. Hence, how can you include that `15%`?
 
@@ -352,13 +352,12 @@ WHERE fname LIKE 'J';
 > ```
 
 > [!NOTE] Takeaways!
->
 > > Not the box that you take food with you BTW...
 >
 > Basically if you have an **exact value / record** in mind and you know that you can easily find it or your table is small!
 > You can use **Exact Matching** ( `=` )!
 >
-> Nevertheless, what if your table has a _million_ values / records.
+> Nevertheless, what if your table has a *million* values / records.
 > And in our case, you have multiple `Julie`, then you are going to need to use **Pattern Matching**!
 
 > [!SUCCESS] I think we are Done!

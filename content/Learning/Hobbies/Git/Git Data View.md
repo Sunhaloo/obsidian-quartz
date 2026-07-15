@@ -30,6 +30,7 @@ SORT date ASC
 - [[Git - Merge]]
 - [[Git - Rebase]]
 - [[Git - Remote Repositories]]
+- [[Git - Tags]]
 - [[GitHub CLI]]
 
 ### Linking Random Git Files
